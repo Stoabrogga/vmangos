@@ -81,6 +81,7 @@
 #include "InstanceStatistics.h"
 #include "GuardMgr.h"
 #include "TransportMgr.h"
+#include "PlayerImmunityMgr.h"
 
 #include <chrono>
 
@@ -1752,6 +1753,9 @@ void World::SetInitialWorldSettings()
 
     sLog.Out(LOG_BASIC, LOG_LVL_MINIMAL, "Loading aura removal on map change definitions");
     sAuraRemovalMgr.LoadFromDB();
+
+    sLog.Out(LOG_BASIC, LOG_LVL_MINIMAL, "Loading player immunities on map change definitions");
+    sPlayerImmunityMgr.LoadFromDB();
 
     // Initialize game time and timers
     sLog.Out(LOG_BASIC, LOG_LVL_MINIMAL, "DEBUG:: Initialize game time and timers");
