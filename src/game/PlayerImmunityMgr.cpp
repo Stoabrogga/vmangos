@@ -86,6 +86,7 @@ void PlayerImmunityManager::PlayerEnterMap(uint32 mapId, Player* pPlayer)
         ApplyImmunity(pPlayer, it->second, PLAYER_IMMUNITY_SAPPED, SPELL_SRC_IMMUNITY_SAPPED, IMMUNITY_MECHANIC, MECHANIC_SAPPED);
         ApplyImmunity(pPlayer, it->second, PLAYER_IMMUNITY_KNOCK_BACK, SPELL_SRC_IMMUNITY_KNOCK_BACK, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK);
         ApplyImmunity(pPlayer, it->second, PLAYER_IMMUNITY_POWER_DRAIN, SPELL_SRC_IMMUNITY_POWER_DRAIN, IMMUNITY_EFFECT, SPELL_EFFECT_POWER_DRAIN);
+        ApplyImmunity(pPlayer, it->second, PLAYER_IMMUNITY_AURA_MOD_CHARM, SPELL_SRC_IMMUNITY_AURA_MOD_CHARM, IMMUNITY_STATE, SPELL_AURA_MOD_CHARM);
     }
     else
     {
@@ -103,6 +104,7 @@ void PlayerImmunityManager::PlayerEnterMap(uint32 mapId, Player* pPlayer)
         pPlayer->ApplySpellImmune(SPELL_SRC_IMMUNITY_SAPPED, IMMUNITY_MECHANIC, MECHANIC_SAPPED, false);
         pPlayer->ApplySpellImmune(SPELL_SRC_IMMUNITY_KNOCK_BACK, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, false);
         pPlayer->ApplySpellImmune(SPELL_SRC_IMMUNITY_POWER_DRAIN, IMMUNITY_EFFECT, SPELL_EFFECT_POWER_DRAIN, false);
+        pPlayer->ApplySpellImmune(SPELL_SRC_IMMUNITY_AURA_MOD_CHARM, IMMUNITY_STATE, SPELL_AURA_MOD_CHARM, false);
     }
 }
 
