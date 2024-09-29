@@ -1004,6 +1004,7 @@ uint32 Pet::GetSkillIdForPetTraining() const
         case CREATURE_FAMILY_CAT:
             return SKILL_PET_CAT;
         case CREATURE_FAMILY_SPIDER:
+        case CREATURE_FAMILY_WORM:
             return SKILL_PET_SPIDER;
         case CREATURE_FAMILY_BEAR:
             return SKILL_PET_BEAR;
