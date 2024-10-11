@@ -1831,7 +1831,7 @@ void Unit::CalculateDamageAbsorbAndResist(SpellCaster* pCaster, SpellSchoolMask 
 
     int32 remainingDamage = int32(damage);
 
-    if (IsPet() && !pCaster->IsCharmerOrOwnerPlayerOrPlayerItself() &&
+    if (IsPet() && GetOwnerGuid().IsPlayer() && !pCaster->IsCharmerOrOwnerPlayerOrPlayerItself() &&
         ((spellProto && spellProto->IsAreaOfEffectSpell()) || (spell && spell->GetTargetNum() > 1 &&
         (spell->m_spellInfo->EffectChainTarget[EFFECT_INDEX_0] > 1 || spell->m_spellInfo->EffectChainTarget[EFFECT_INDEX_1] > 1 || spell->m_spellInfo->EffectChainTarget[EFFECT_INDEX_2] > 1))))
         remainingDamage *= sWorld.getConfig(CONFIG_FLOAT_PET_AOE_FACTOR);
