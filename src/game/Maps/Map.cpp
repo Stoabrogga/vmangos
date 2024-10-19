@@ -515,7 +515,12 @@ Map::Add(T* obj)
     obj->SetIsNewObject(false);
 
     if (Creature* pCreature = obj->ToCreature())
+    {
         pCreature->CastSpawnSpell();
+
+        if (Pet* pet = pCreature->ToPet(); pet && pet->GetOwnerGuid().IsPlayer())
+            sPlayerImmunityMgr.PetEnterMap(i_id, pet);
+    }
 }
 
 template<>

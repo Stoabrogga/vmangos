@@ -24,20 +24,21 @@
 
 enum PlayerImmunity
 {
-    PLAYER_IMMUNITY_CHARM             = 0x00000001,
-    PLAYER_IMMUNITY_FEAR              = 0x00000002,
-    PLAYER_IMMUNITY_SILENCE           = 0x00000004,
-    PLAYER_IMMUNITY_SLEEP             = 0x00000008,
-    PLAYER_IMMUNITY_STUN              = 0x00000010,
-    PLAYER_IMMUNITY_FREEZE            = 0x00000020,
-    PLAYER_IMMUNITY_KNOCKOUT          = 0x00000040,
-    PLAYER_IMMUNITY_POLYMORPH         = 0x00000080,
-    PLAYER_IMMUNITY_HORROR            = 0x00000100,
-    PLAYER_IMMUNITY_DAZE              = 0x00000200,
-    PLAYER_IMMUNITY_SAPPED            = 0x00000400,
-    PLAYER_IMMUNITY_KNOCK_BACK        = 0x00000800,
-    PLAYER_IMMUNITY_POWER_DRAIN       = 0x00001000,
-    PLAYER_IMMUNITY_AURA_MOD_CHARM    = 0x00002000,
+    PLAYER_IMMUNITY_PET               = 0x00000001, // if set, also apply immunities to player pets
+    PLAYER_IMMUNITY_CHARM             = 0x00000002,
+    PLAYER_IMMUNITY_FEAR              = 0x00000004,
+    PLAYER_IMMUNITY_SILENCE           = 0x00000008,
+    PLAYER_IMMUNITY_SLEEP             = 0x00000010,
+    PLAYER_IMMUNITY_STUN              = 0x00000020,
+    PLAYER_IMMUNITY_FREEZE            = 0x00000040,
+    PLAYER_IMMUNITY_KNOCKOUT          = 0x00000080,
+    PLAYER_IMMUNITY_POLYMORPH         = 0x00000100,
+    PLAYER_IMMUNITY_HORROR            = 0x00000200,
+    PLAYER_IMMUNITY_DAZE              = 0x00000400,
+    PLAYER_IMMUNITY_SAPPED            = 0x00000800,
+    PLAYER_IMMUNITY_KNOCK_BACK        = 0x00001000,
+    PLAYER_IMMUNITY_POWER_DRAIN       = 0x00002000,
+    PLAYER_IMMUNITY_AURA_MOD_CHARM    = 0x00004000,
 
     SPELL_SRC_IMMUNITY_CHARM          = 0xFFFF0000,
     SPELL_SRC_IMMUNITY_FEAR           = 0xFFFF0001,
@@ -61,19 +62,19 @@ class Player;
 // definitions in world-db table instance_player_immunity
 class PlayerImmunityManager
 {
-public:                                                 // Constructors
+public:
     PlayerImmunityManager() {}
 
-public:                                                 // Initialisation
+public:
     void LoadFromDB();
-
-public:                                                 // Accessors
     void PlayerEnterMap(uint32 mapId, Player* pPlayer);
+    void PetEnterMap(uint32 mapId, Pet* pPet);
 
 private:
-    void ApplyImmunity(Player* pPlayer, uint32 immunityFlags, uint32 playerImmunity, uint32 spellId, uint32 op, uint32 type);
+    void HandleImmunities(Unit* unit, uint32 immunityFlags, bool apply);
+    void ApplyImmunity(Unit* unit, uint32 immunityFlags, uint32 playerImmunity, uint32 spellId, uint32 op, uint32 type);
 
-    // <map ID, immunity flag>
+    // <map ID, immunity flags>
     std::unordered_map<uint32, uint32> m_data;
 };
 
