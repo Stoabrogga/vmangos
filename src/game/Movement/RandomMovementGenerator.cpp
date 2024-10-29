@@ -22,8 +22,6 @@
 #include "MoveSplineInit.h"
 #include "MoveSpline.h"
 
-#define MAX_RANDOM_POINTS 10
-
 void RandomMovementGenerator::_setRandomLocation(Creature &creature)
 {
     if (creature.CanFly())
