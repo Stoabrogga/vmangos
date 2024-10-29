@@ -179,7 +179,7 @@ UPDATE `creature_spells` SET `name`='Silithus - The Duke of Fathoms' WHERE `entr
 UPDATE `creature_spells` SET `name`='Naxxramas - Plagued Construct' WHERE `entry`=169820;
 
 -- Remove some unused spell lists.
-DELETE FROM `creature_spells` WHERE `entry` IN (72860, 1600000, 1600010, 1600020, 1600030, 1600040, 1600050);
+DELETE FROM `creature_spells` WHERE `entry` IN (72860, 1600000, 1600010, 1600020, 1600030, 1600040, 1600050, 9876000);
 UPDATE `creature_template` SET `spell_list_id`=73510 WHERE `entry`=7351;
 
 
