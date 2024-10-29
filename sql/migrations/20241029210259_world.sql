@@ -63,7 +63,7 @@ UPDATE `creature_spells` SET `name`='Ashenvale - Mystlash Flayer' WHERE `entry`=
 UPDATE `creature_spells` SET `name`='Hillsbrad Foothills - Searing Totem II' WHERE `entry`=39020;
 UPDATE `creature_spells` SET `name`='Thousand Needles - Gravelsnout Digger' WHERE `entry`=41130;
 UPDATE `creature_spells` SET `name`='Naxxramas - Unrelenting Trainee' WHERE `entry`=161240;
-UPDATE `creature_spells` SET `name`='Ahn\'Qiraj - Anubisath Swarmguard' WHERE `entry`=155380;
+UPDATE `creature_spells` SET `name`='Ruins of Ahn\'Qiraj - Anubisath Swarmguard' WHERE `entry`=155380;
 UPDATE `creature_spells` SET `name`='Naxxramas - Unrelenting Rider' WHERE `entry`=161260;
 UPDATE `creature_spells` SET `name`='Blackrock Depths - Deep Stinger' WHERE `entry`=89260;
 UPDATE `creature_spells` SET `name`='Orgrimmar - Summoned Succubus' WHERE `entry`=56770;
@@ -139,7 +139,7 @@ UPDATE `creature_spells` SET `name`='Silithus - Hoary Templar' WHERE `entry`=152
 UPDATE `creature_spells` SET `name`='Silithus - The Duke of Zephyrs' WHERE `entry`=152200;
 UPDATE `creature_spells` SET `name`='Silithus - Arakis' WHERE `entry`=152900;
 UPDATE `creature_spells` SET `name`='Ruins of Ahn\'Qiraj - Mana Fiend' WHERE `entry`=155270;
-UPDATE `creature_spells` SET `name`='Ahn\'Qiraj - Anubisath Warrior' WHERE `entry`=155370;
+UPDATE `creature_spells` SET `name`='Ruins of Ahn\'Qiraj - Anubisath Warrior' WHERE `entry`=155370;
 UPDATE `creature_spells` SET `name`='Naxxramas - Spectral Trainee' WHERE `entry`=161270;
 UPDATE `creature_spells` SET `name`='Naxxramas - Spectral Rider' WHERE `entry`=161500;
 UPDATE `creature_spells` SET `name`='Naxxramas - Naxxramas Follower' WHERE `entry`=165050;
