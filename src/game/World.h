@@ -1074,6 +1074,7 @@ class World
 };
 
 extern uint32 realmID;
+extern std::string realmName;
 
 #define sWorld MaNGOS::Singleton<World>::Instance()
 #endif
