@@ -95,7 +95,7 @@ jobs:
     - name: Download artifact snapshot-Release
       uses: actions/download-artifact@v4
       with:
-        pattern: snapshot-devbuild-*
+        pattern: snapshot-devbuild
         merge-multiple: true
         path: all_snapshots
 
