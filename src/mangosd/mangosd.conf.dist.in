@@ -2431,7 +2431,9 @@ Visibility.ForceActiveObjects      = 1
 # SERVER RATES
 #
 #    Rate.Health
+#    Rate.Health.Creature (player controlled creatures)
 #    Rate.Mana
+#    Rate.Mana.Creature
 #    Rate.Rage.Income
 #    Rate.Rage.Loss
 #    Rate.Focus
@@ -2607,7 +2609,9 @@ Visibility.ForceActiveObjects      = 1
 ###################################################################################################################
 
 Rate.Health = 1
+Rate.Health.Creature = 1
 Rate.Mana = 1
+Rate.Mana.Creature = 1
 Rate.Rage.Income = 1
 Rate.Rage.Loss = 1
 Rate.Focus = 1
