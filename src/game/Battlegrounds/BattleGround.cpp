@@ -1075,7 +1075,8 @@ void BattleGround::AddOrSetPlayerToCorrectBgGroup(Player* pPlayer, ObjectGuid pl
     {
         group = new Group;
         SetBgRaid(team, group);
-        group->Create(playerGuid, pPlayer->GetName());
+        if (!group->Create(playerGuid, pPlayer->GetName()))
+            delete group;
     }
 }
 
