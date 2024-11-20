@@ -1323,6 +1323,11 @@ AllowTwoSide.AddFriend = 0
 #        Creature Health Ammount Modifier.
 #        Examples: 2 - creatures will have double health
 #
+#    RaidScaling.HP
+#        If this value is >0 and max players of a raid instance is greater than this value, further scale HP by <value>/<max players>.
+#        Default: 0 (disable scaling)
+#        Example: 5 - if entering a raid instance with 40 max players the HP will be further scaled by 5/40 = 0.125
+#
 #    ListenRange.Say
 #        Radius in which chat messages sent in /say can be heard
 #        Default: 25
@@ -1378,6 +1383,7 @@ Rate.Creature.Elite.Elite.HP = 1
 Rate.Creature.Elite.RAREELITE.HP = 1
 Rate.Creature.Elite.WORLDBOSS.HP = 1
 Rate.Creature.Elite.RARE.HP = 1
+RaidScaling.HP = 0
 ListenRange.Say = 40
 ListenRange.TextEmote = 40
 ListenRange.Yell = 300

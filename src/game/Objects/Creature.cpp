@@ -1720,7 +1720,17 @@ void Creature::InitStatsForLevel(float percentHealth, float percentMana)
     CreatureClassLevelStats const* pCLS = GetClassLevelStats();
 
     // health
-    float const healthMod = _GetHealthMod(rank);
+    float raidScalingHp = 1.f;
+    uint32 configRaidScalingHp = sWorld.getConfig(CONFIG_UINT32_RAID_SCALING_HP);
+
+    if (configRaidScalingHp && GetMap()->IsRaid())
+    {
+        uint32 maxPlayers = ((DungeonMap*)GetMap())->GetMaxPlayers();
+        if (configRaidScalingHp < maxPlayers)
+            raidScalingHp = static_cast<float>(configRaidScalingHp) / maxPlayers;
+    }
+
+    float const healthMod = _GetHealthMod(rank) * raidScalingHp;
     uint32 const health = std::max(1u, uint32(roundf(healthMod * pCLS->health * cinfo->health_multiplier)));
     uint32 const baseHealth = std::max(1u, uint32(roundf(healthMod * pCLS->base_health)));
 
