@@ -3074,3 +3074,8 @@ DynamicRespawn.AffectLevelBelow         = 0
 DynamicRespawn.PlayersThreshold         = 0
 DynamicRespawn.PlayersMaxLevelDiff      = 0
 
+###################################################################################################################
+#    Custom gameplay parameters
+###################################################################################################################
+BlackwingLair.Razorgore.EggCount = 30
+

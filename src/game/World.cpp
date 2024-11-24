@@ -1244,6 +1244,9 @@ void World::LoadConfigSettings(bool reload)
 
     setConfig(CONFIG_UINT32_CREATURE_SUMMON_LIMIT, "MaxCreatureSummonLimit", DEFAULT_CREATURE_SUMMON_LIMIT);
 
+    // Custom gameplay parameters
+    setConfigMinMax(CONFIG_UINT32_BLACKWING_LAIR_RAZORGORE_EGG_COUNT, "BlackwingLair.Razorgore.EggCount", 30, 1, 30);
+
     // Smartlog data
     sLog.InitSmartlogEntries(sConfig.GetStringDefault("Smartlog.ExtraEntries", ""));
     sLog.InitSmartlogGuids(sConfig.GetStringDefault("Smartlog.ExtraGuids", ""));

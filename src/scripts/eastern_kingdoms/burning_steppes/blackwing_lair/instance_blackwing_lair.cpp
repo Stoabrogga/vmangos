@@ -71,8 +71,6 @@ enum
     AT_ORB_OF_COMMAND           = 3847,
     AT_ENTER_VAEL_ROOM          = 3626,
 
-    EGGS_COUNT                  = 30,
-
     SPELL_NATURE_IMMUNITY       = 7941,
     SPELL_FROST_IMMUNITY        = 7940,
     SPELL_FIRE_IMMUNITY         = 7942,
@@ -770,7 +768,7 @@ struct instance_blackwing_lair : public ScriptedInstance
         case DATA_EGG:
             if (uiData == IN_PROGRESS)
             {
-                if (++m_auiData[DATA_HOW_EGG] >= EGGS_COUNT)
+                if (++m_auiData[DATA_HOW_EGG] >= sWorld.getConfig(CONFIG_UINT32_BLACKWING_LAIR_RAZORGORE_EGG_COUNT))
                     m_auiData[DATA_EGG] = DONE;
             }
             else if (uiData == FAIL)
