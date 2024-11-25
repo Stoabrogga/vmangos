@@ -3078,4 +3078,6 @@ DynamicRespawn.PlayersMaxLevelDiff      = 0
 #    Custom gameplay parameters
 ###################################################################################################################
 BlackwingLair.Razorgore.EggCount = 30
+Naxxramas.Gothik.CheckPlayerCount = 10
+Naxxramas.Gothik.KeepDoorOpen = 0
 

@@ -396,7 +396,7 @@ struct boss_gothikAI : public ScriptedAI
             {
                 if (m_uiSpeechTimer < uiDiff)
                 {
-                    if (HasLessPlayersPerSide(10))
+                    if (HasLessPlayersPerSide(sWorld.getConfig(CONFIG_UINT32_NAXXRAMAS_GOTHIK_CHECK_PLAYER_COUNT)))
                     {
                         EnterEvadeMode();
                         return;

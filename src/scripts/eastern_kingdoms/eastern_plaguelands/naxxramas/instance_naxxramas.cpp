@@ -828,7 +828,7 @@ void instance_naxxramas::SetData(uint32 uiType, uint32 uiData)
                 switch (uiData)
                 {
                 case IN_PROGRESS:
-                    pGO->SetGoState(GO_STATE_READY);
+                    pGO->SetGoState(sWorld.getConfig(CONFIG_BOOL_NAXXRAMAS_GOTHIK_KEEP_DOOR_OPEN) ? GO_STATE_ACTIVE : GO_STATE_READY);
                     break;
                 case SPECIAL:
                     pGO->SetGoState(GO_STATE_ACTIVE);

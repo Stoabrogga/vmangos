@@ -1246,6 +1246,8 @@ void World::LoadConfigSettings(bool reload)
 
     // Custom gameplay parameters
     setConfigMinMax(CONFIG_UINT32_BLACKWING_LAIR_RAZORGORE_EGG_COUNT, "BlackwingLair.Razorgore.EggCount", 30, 1, 30);
+    setConfigMinMax(CONFIG_UINT32_NAXXRAMAS_GOTHIK_CHECK_PLAYER_COUNT, "Naxxramas.Gothik.CheckPlayerCount", 10, 0, 20);
+    setConfig(CONFIG_BOOL_NAXXRAMAS_GOTHIK_KEEP_DOOR_OPEN, "Naxxramas.Gothik.KeepDoorOpen", false);
 
     // Smartlog data
     sLog.InitSmartlogEntries(sConfig.GetStringDefault("Smartlog.ExtraEntries", ""));
