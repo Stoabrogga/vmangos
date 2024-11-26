@@ -1720,17 +1720,7 @@ void Creature::InitStatsForLevel(float percentHealth, float percentMana)
     CreatureClassLevelStats const* pCLS = GetClassLevelStats();
 
     // health
-    float raidScalingHp = 1.f;
-    uint32 configRaidScalingHp = sWorld.getConfig(CONFIG_UINT32_RAID_SCALING_HP);
-
-    if (configRaidScalingHp && GetMap()->IsRaid())
-    {
-        uint32 maxPlayers = ((DungeonMap*)GetMap())->GetMaxPlayers();
-        if (configRaidScalingHp < maxPlayers)
-            raidScalingHp = static_cast<float>(configRaidScalingHp) / maxPlayers;
-    }
-
-    float const healthMod = _GetHealthMod(rank) * raidScalingHp;
+    float const healthMod = _GetHealthMod(rank);
     uint32 const health = std::max(1u, uint32(roundf(healthMod * pCLS->health * cinfo->health_multiplier)));
     uint32 const baseHealth = std::max(1u, uint32(roundf(healthMod * pCLS->base_health)));
 
@@ -1786,20 +1776,30 @@ void Creature::InitStatsForLevel(float percentHealth, float percentMana)
 
 float Creature::_GetHealthMod(int32 rank)
 {
+    float raidScalingHp = 1.f;
+    uint32 configRaidScalingHp = sWorld.getConfig(CONFIG_UINT32_RAID_SCALING_HP);
+
+    if (configRaidScalingHp && GetMap()->IsRaid())
+    {
+        uint32 maxPlayers = ((DungeonMap*)GetMap())->GetMaxPlayers();
+        if (configRaidScalingHp < maxPlayers)
+            raidScalingHp = static_cast<float>(configRaidScalingHp) / maxPlayers;
+    }
+
     switch (rank)                                           // define rates for each elite rank
     {
         case CREATURE_ELITE_NORMAL:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_NORMAL_HP);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_NORMAL_HP) * raidScalingHp;
         case CREATURE_ELITE_ELITE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_HP);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_HP) * raidScalingHp;
         case CREATURE_ELITE_RAREELITE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RAREELITE_HP);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RAREELITE_HP) * raidScalingHp;
         case CREATURE_ELITE_WORLDBOSS:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_WORLDBOSS_HP);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_WORLDBOSS_HP) * raidScalingHp;
         case CREATURE_ELITE_RARE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RARE_HP);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RARE_HP) * raidScalingHp;
         default:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_HP);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_HP) * raidScalingHp;
     }
 }
 
