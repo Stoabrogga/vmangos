@@ -1774,7 +1774,7 @@ void Creature::InitStatsForLevel(float percentHealth, float percentMana)
     SetCreateStat(STAT_SPIRIT, pCLS->spirit);
 }
 
-float Creature::_GetHealthMod(int32 rank)
+float Creature::_GetHealthMod(int32 rank) const
 {
     float raidScalingHp = 1.f;
     uint32 configRaidScalingHp = sWorld.getConfig(CONFIG_UINT32_RAID_SCALING_HP);
@@ -1803,41 +1803,49 @@ float Creature::_GetHealthMod(int32 rank)
     }
 }
 
-float Creature::_GetDamageMod(int32 rank)
+float Creature::_GetDamageMod(int32 rank) const
 {
+    float raidRate = 1.f;
+    if (GetMap()->IsRaid())
+        raidRate = sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_RAID_DAMAGE);
+
     switch (rank)                                           // define rates for each elite rank
     {
         case CREATURE_ELITE_NORMAL:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_NORMAL_DAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_NORMAL_DAMAGE) * raidRate;
         case CREATURE_ELITE_ELITE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_DAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_DAMAGE) * raidRate;
         case CREATURE_ELITE_RAREELITE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RAREELITE_DAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RAREELITE_DAMAGE) * raidRate;
         case CREATURE_ELITE_WORLDBOSS:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_WORLDBOSS_DAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_WORLDBOSS_DAMAGE) * raidRate;
         case CREATURE_ELITE_RARE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RARE_DAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RARE_DAMAGE) * raidRate;
         default:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_DAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_DAMAGE) * raidRate;
     }
 }
 
-float Creature::_GetSpellDamageMod(int32 rank)
+float Creature::_GetSpellDamageMod(int32 rank) const
 {
+    float raidRate = 1.f;
+    if (GetMap()->IsRaid())
+        raidRate = sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_RAID_SPELLDAMAGE);
+
     switch (rank)                                           // define rates for each elite rank
     {
         case CREATURE_ELITE_NORMAL:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_NORMAL_SPELLDAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_NORMAL_SPELLDAMAGE) * raidRate;
         case CREATURE_ELITE_ELITE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_SPELLDAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_SPELLDAMAGE) * raidRate;
         case CREATURE_ELITE_RAREELITE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RAREELITE_SPELLDAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RAREELITE_SPELLDAMAGE) * raidRate;
         case CREATURE_ELITE_WORLDBOSS:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_WORLDBOSS_SPELLDAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_WORLDBOSS_SPELLDAMAGE) * raidRate;
         case CREATURE_ELITE_RARE:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RARE_SPELLDAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_RARE_SPELLDAMAGE) * raidRate;
         default:
-            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_SPELLDAMAGE);
+            return sWorld.getConfig(CONFIG_FLOAT_RATE_CREATURE_ELITE_ELITE_SPELLDAMAGE) * raidRate;
     }
 }
 
