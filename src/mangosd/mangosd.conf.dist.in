@@ -2589,6 +2589,10 @@ Visibility.ForceActiveObjects      = 1
 #         Chance to lose durability on an equipped item when taking or dealing damage
 #         Default: 0.5
 #
+#    AmmoLoss.Enable
+#         Default: 1 (enabled)
+#                  0 (disabled)
+#
 #    Death.SicknessLevel
 #         Level at which characters can be afflicted with Resurrection Sickness (1 min).
 #         Duration increases by 1 minute for each level above this setting, up to 10 minutes.
@@ -2682,6 +2686,7 @@ SkillFail.Gain.Fishing = 0
 SkillFail.Possible.FishingPool = 1
 DurabilityLoss.Enable = 1
 DurabilityLossChance.Damage = 0.5
+AmmoLoss.Enable = 1
 Death.SicknessLevel = 11
 Death.CorpseReclaimDelay.PvP = 1
 Death.CorpseReclaimDelay.PvE = 1

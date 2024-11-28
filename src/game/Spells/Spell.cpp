@@ -4139,7 +4139,9 @@ void Spell::cast(bool skipCheck)
 
     TakePower();
     TakeReagents();                                         // we must remove reagents before HandleEffects to allow place crafted item in same slot
-    TakeAmmo();
+
+    if (sWorld.getConfig(CONFIG_BOOL_AMMO_LOSS_ENABLE))
+        TakeAmmo();
 
     SendCastResult(castResult);
     InitializeDamageMultipliers();
