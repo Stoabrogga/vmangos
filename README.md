@@ -6,6 +6,7 @@ Customizations:
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
+| 2024-11-29 | f8cb5d0ad6e0caece16b858bfc4aec9832c0b24c | Add mangosd parameter "AmmoLoss.Enable" | |
 | 2024-11-26 | e1ca5591a744b7bac2d73f7f42356969951a8bab | Add mangosd parameters "Rate.Creature.Raid.Damage" & "Rate.Creature.Raid.SpellDamage" | |
 | 2024-11-26 | 7852809906226ff64f1d04e420e009c8d1a9487d | Add mangosd parameters "Naxxramas.Gothik.CheckPlayerCount" & "Naxxramas.Gothik.KeepDoorOpen" | |
 | 2024-11-24 | 6200557b7a745586c7bdbb9715dda0ccd4082cd0 | Add mangosd parameter "BlackwingLair.Razorgore.EggCount" | |
