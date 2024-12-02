@@ -82,7 +82,7 @@
 #include "GuardMgr.h"
 #include "TransportMgr.h"
 #include "PlayerImmunityMgr.h"
-
+#include "RealmZone.h"
 #include <chrono>
 
 INSTANTIATE_SINGLETON_1(World);
