@@ -6898,7 +6898,7 @@ SpellCastResult Spell::CheckCast(bool strict)
                         if (pPlayer->GetTransport())
                             return SPELL_FAILED_NO_MOUNTS_ALLOWED;
 
-                        if (m_casterUnit->GetMapId() != 531 && !sMapStorage.LookupEntry<MapEntry>(m_casterUnit->GetMapId())->IsMountAllowed() && !m_IsTriggeredSpell)
+                        if (m_casterUnit->GetMapId() != MAP_AHN_QIRAJ_TEMPLE && !sMapStorage.LookupEntry<MapEntry>(m_casterUnit->GetMapId())->IsMountAllowed() && !m_IsTriggeredSpell)
                             return SPELL_FAILED_NO_MOUNTS_ALLOWED;
                     }
 
@@ -6908,7 +6908,7 @@ SpellCastResult Spell::CheckCast(bool strict)
                     if (m_casterUnit->IsInDisallowedMountForm())
                         return SPELL_FAILED_NOT_SHAPESHIFT;
 
-                    if (m_casterUnit->GetMapId() == 531)
+                    if (m_casterUnit->GetMapId() == MAP_AHN_QIRAJ_TEMPLE)
                         break;
                 }
             }
@@ -7103,7 +7103,7 @@ SpellCastResult Spell::CheckCast(bool strict)
                     case 26054:
                     case 26055:
                     case 26056:
-                        if (m_casterUnit->GetMapId() == 531)
+                        if (m_casterUnit->GetMapId() == MAP_AHN_QIRAJ_TEMPLE)
                         {
                             isAQ40Mount = true;
                             break;
@@ -7111,7 +7111,7 @@ SpellCastResult Spell::CheckCast(bool strict)
                         else
                             return SPELL_FAILED_NOT_HERE;
                     default:
-                        if ((m_casterUnit->GetMapId() == 531 && m_casterUnit->GetTerrain()->IsOutdoors(m_casterUnit->GetPositionX(), m_casterUnit->GetPositionY(), m_casterUnit->GetPositionZ())))
+                        if ((m_casterUnit->GetMapId() == MAP_AHN_QIRAJ_TEMPLE && m_casterUnit->GetTerrain()->IsOutdoors(m_casterUnit->GetPositionX(), m_casterUnit->GetPositionY(), m_casterUnit->GetPositionZ())))
                             isAQ40Mount = true;
                         break;
                 }
