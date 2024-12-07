@@ -35,6 +35,7 @@
 #include "DynamicObject.h"
 #include "Group.h"
 #include "MapManager.h"
+#include "ScriptMgr.h"
 #include "ObjectAccessor.h"
 #include "SharedDefines.h"
 #include "LootMgr.h"

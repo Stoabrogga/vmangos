@@ -27,6 +27,7 @@
 #include "World.h"
 #include "Chat.h"
 #include "Spell.h"
+#include "ScriptMgr.h"
 #include "BattleGroundMgr.h"
 #include "MapManager.h"
 #include "Unit.h"
