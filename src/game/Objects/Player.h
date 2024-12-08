@@ -1286,6 +1286,7 @@ class Player final: public Unit
         // We allow only one timed quest active at the same time. Below can then be simple value instead of set.
         typedef std::set<uint32> QuestSet;
         QuestSet m_timedquests;
+        bool m_showLowLevelQuests;
 
         ObjectGuid m_dividerGuid;
         uint32 m_ingametime;
@@ -1408,6 +1409,9 @@ class Player final: public Unit
 
         void AddTimedQuest(uint32 quest_id) { m_timedquests.insert(quest_id); }
         void RemoveTimedQuest(uint32 quest_id) { m_timedquests.erase(quest_id); }
+
+        bool ToggleShowLowLevelQuests() { m_showLowLevelQuests = !m_showLowLevelQuests; return m_showLowLevelQuests; }
+        bool ShowLowLevelQuests() const { return m_showLowLevelQuests; }
 
         /*********************************************************/
         /***                   LOAD SYSTEM                     ***/

@@ -5897,3 +5897,17 @@ bool ChatHandler::HandleListExploredAreasCommand(char* args)
     }
     return true;
 }
+
+bool ChatHandler::HandleToggleShowLowLevelQuests(char* args)
+{
+    Player* pPlayer = GetSelectedPlayer();
+    if (!pPlayer)
+    {
+        SendSysMessage(LANG_NO_CHAR_SELECTED);
+        SetSentErrorMessage(true);
+        return false;
+    }
+
+    PSendSysMessage(pPlayer->ToggleShowLowLevelQuests() ? "show low level quests" : "hide low level quests");
+    return true;
+}
