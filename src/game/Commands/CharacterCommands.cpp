@@ -34,6 +34,7 @@
 #include "PlayerDump.h"
 #include "CharacterDatabaseCache.h"
 #include "Config/Config.h"
+#include "GridSearchers.h"
 
 #include <regex>
 
@@ -5909,5 +5910,39 @@ bool ChatHandler::HandleToggleShowLowLevelQuests(char* args)
     }
 
     PSendSysMessage(pPlayer->ToggleShowLowLevelQuests() ? "show low level quests" : "hide low level quests");
+    float dist = pPlayer->GetMap()->GetVisibilityDistance();
+    std::list<WorldObject*> targets;
+    MaNGOS::AllWorldObjectsInRange u_check(pPlayer, dist);
+    MaNGOS::WorldObjectListSearcher<MaNGOS::AllWorldObjectsInRange> searcher(targets, u_check);
+    Cell::VisitAllObjects(pPlayer, searcher, dist);
+    uint8 dialogStatus = DIALOG_STATUS_NONE;
+
+    for (const auto pWorldObject : targets)
+    {
+        if (!pWorldObject)
+            continue;
+        else if (GameObject* go = pWorldObject->ToGameObject())
+        {
+            dialogStatus = sScriptMgr.GetDialogStatus(pPlayer, go);
+
+            if (dialogStatus > 6)
+                dialogStatus = pPlayer->GetSession()->GetDialogStatus(pPlayer, go, DIALOG_STATUS_NONE);
+
+            pPlayer->PlayerTalkClass->SendQuestGiverStatus(dialogStatus, pWorldObject->GetGUID());
+        }
+        else if (Creature* cr = pWorldObject->ToCreature())
+        {
+            if (!cr->IsHostileTo(pPlayer))       // not show quest status to enemies
+            {
+                dialogStatus = sScriptMgr.GetDialogStatus(pPlayer, cr);
+
+                if (dialogStatus > 6)
+                    dialogStatus = pPlayer->GetSession()->GetDialogStatus(pPlayer, cr, DIALOG_STATUS_NONE);
+            }
+
+            pPlayer->PlayerTalkClass->SendQuestGiverStatus(dialogStatus, pWorldObject->GetGUID());
+        }
+    }
+
     return true;
 }
