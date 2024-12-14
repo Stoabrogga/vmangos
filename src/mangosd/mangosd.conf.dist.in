@@ -1062,8 +1062,24 @@ PerformanceLog.SlowPacketBroadcast      = 0
 #        Default: 1.0
 #
 #    PetAoeFactor
-#        Factor for pets getting damage from non-player AoE spells. This also includes chained spells if the pet is not the first target.
+#        Factor for player pets getting damage from non-player AoE spells. This also includes chained spells if the pet is not the first target.
 #        Default: 1.0
+#
+#    PetHealthFactor
+#        Factor for player pet health
+#        Default: 1.0
+#
+#    PetDamageFactor
+#        Factor for player pet damage
+#        Default: 1.0
+#
+#    PetArmorFactor
+#        Factor for player pet armor
+#        Default: 1.0
+#
+#    PetResistance
+#        Base resistance for player pets
+#        Default: 0
 #
 #    PlayerCommands
 #        Should player chat be parsed for GM commands
@@ -1173,6 +1189,10 @@ PetHappinessLossFactor = 1.0
 PetUntrainCostFactor = 1.0
 PetXPFactor = 1.0
 PetAoeFactor = 1.0
+PetHealthFactor = 1.0
+PetDamageFactor = 1.0
+PetArmorFactor = 1.0
+PetResistance = 0
 PlayerCommands = 1
 Event.Announce = 0
 AutoBroadcast.Timer = 1800000

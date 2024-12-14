@@ -1402,8 +1402,19 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
         SetCreateResistance(SPELL_SCHOOL_ARCANE, cinfo->arcane_res);
     }
 
-    float healthMod = owner->IsPlayer() ? 1.0f : _GetHealthMod(cinfo->rank);
-    float damageMod = owner->IsPlayer() ? 1.0f : _GetDamageMod(cinfo->rank);
+    if (sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE) && owner->IsPlayer())
+    {
+        SetCreateResistance(SPELL_SCHOOL_HOLY, sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE));
+        SetCreateResistance(SPELL_SCHOOL_FIRE, sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE));
+        SetCreateResistance(SPELL_SCHOOL_NATURE, sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE));
+        SetCreateResistance(SPELL_SCHOOL_FROST, sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE));
+        SetCreateResistance(SPELL_SCHOOL_SHADOW, sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE));
+        SetCreateResistance(SPELL_SCHOOL_ARCANE, sWorld.getConfig(CONFIG_UINT32_PET_RESISTANCE));
+    }
+
+    float healthMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_HEALTH_FACTOR) : _GetHealthMod(cinfo->rank);
+    float damageMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_DAMAGE_FACTOR) : _GetDamageMod(cinfo->rank);
+    float armorMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_ARMOR_FACTOR) : 1.f;
 
     switch (getPetType())
     {
@@ -1427,9 +1438,9 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
             }
 
             if (pInfo && pInfo->armor)
-                SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pInfo->armor));
+                SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pInfo->armor * armorMod));
             else
-                SetCreateResistance(SPELL_SCHOOL_NORMAL, pCLS->armor * cinfo->armor_multiplier);
+                SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pCLS->armor * cinfo->armor_multiplier * armorMod));
 
             if (pInfo)                                      // exist in DB
             {
@@ -1464,7 +1475,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
             if (pInfo)                                      // exist in DB
             {
                 SetCreateHealth(pInfo->health * healthMod);
-                SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pInfo->armor));
+                SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pInfo->armor * armorMod));
 
                 for (int i = STAT_STRENGTH; i < MAX_STATS; ++i)
                     SetCreateStat(Stats(i),  float(pInfo->stats[i]));
@@ -1476,7 +1487,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
 
                 // disregard template multiplier
                 SetCreateHealth(pCLS->health * healthMod);
-                SetCreateResistance(SPELL_SCHOOL_NORMAL, pCLS->armor);
+                SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pCLS->armor * armorMod));
 
                 SetCreateStat(STAT_STRENGTH, pCLS->strength);
                 SetCreateStat(STAT_AGILITY, pCLS->agility);
@@ -1496,7 +1507,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
             CreatureClassLevelStats const* pCLS = GetClassLevelStats();
             SetCreateHealth(pCLS->health * cinfo->health_multiplier * healthMod);
             SetCreateMana(pCLS->mana * cinfo->mana_multiplier);
-            SetCreateResistance(SPELL_SCHOOL_NORMAL, pCLS->armor * cinfo->armor_multiplier);
+            SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pCLS->armor * cinfo->armor_multiplier * armorMod));
 
             float const meleeDamageAverage = pCLS->melee_damage * cinfo->damage_multiplier * damageMod;
             float const meleeDamageVariance = meleeDamageAverage * cinfo->damage_variance;
