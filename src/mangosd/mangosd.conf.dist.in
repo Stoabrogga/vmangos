@@ -1077,6 +1077,10 @@ PerformanceLog.SlowPacketBroadcast      = 0
 #        Factor for player pet armor
 #        Default: 1.0
 #
+#    PetManaFactor
+#        Factor for player pet mana
+#        Default: 1.0
+#
 #    PetResistance
 #        Base resistance for player pets
 #        Default: 0
@@ -1192,6 +1196,7 @@ PetAoeFactor = 1.0
 PetHealthFactor = 1.0
 PetDamageFactor = 1.0
 PetArmorFactor = 1.0
+PetManaFactor = 1.0
 PetResistance = 0
 PlayerCommands = 1
 Event.Announce = 0

@@ -825,6 +825,7 @@ void World::LoadConfigSettings(bool reload)
     setConfigMin(CONFIG_FLOAT_PET_HEALTH_FACTOR, "PetHealthFactor", 1.f, 0.f);
     setConfigMin(CONFIG_FLOAT_PET_DAMAGE_FACTOR, "PetDamageFactor", 1.f, 0.f);
     setConfigMin(CONFIG_FLOAT_PET_ARMOR_FACTOR, "PetArmorFactor", 1.f, 0.f);
+    setConfigMin(CONFIG_FLOAT_PET_MANA_FACTOR, "PetManaFactor", 1.f, 0.f);
     setConfigMin(CONFIG_UINT32_PET_RESISTANCE, "PetResistance", 0, 0);
 
     setConfig(CONFIG_UINT32_ANTIFLOOD_SANCTION,       "Antiflood.Sanction", CHEAT_ACTION_KICK);

@@ -1415,6 +1415,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
     float healthMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_HEALTH_FACTOR) : _GetHealthMod(cinfo->rank);
     float damageMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_DAMAGE_FACTOR) : _GetDamageMod(cinfo->rank);
     float armorMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_ARMOR_FACTOR) : 1.f;
+    float manaMod = owner->IsPlayer() ? sWorld.getConfig(CONFIG_FLOAT_PET_MANA_FACTOR) : 1.f;
 
     switch (getPetType())
     {
@@ -1445,7 +1446,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
             if (pInfo)                                      // exist in DB
             {
                 SetCreateHealth(pInfo->health * healthMod);
-                SetCreateMana(pInfo->mana);
+                SetCreateMana(pInfo->mana * manaMod);
 
                 for (int stat = 0; stat < MAX_STATS; ++stat)
                     SetCreateStat(Stats(stat), float(pInfo->stats[stat]));
@@ -1453,7 +1454,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
             else
             {
                 SetCreateHealth(pCLS->health * cinfo->health_multiplier * healthMod);
-                SetCreateMana(pCLS->mana * cinfo->mana_multiplier);
+                SetCreateMana(pCLS->mana * cinfo->mana_multiplier * manaMod);
 
                 SetCreateStat(STAT_STRENGTH, pCLS->strength);
                 SetCreateStat(STAT_AGILITY, pCLS->agility);
@@ -1506,7 +1507,7 @@ bool Pet::InitStatsForLevel(uint32 petlevel, Unit const* owner)
 
             CreatureClassLevelStats const* pCLS = GetClassLevelStats();
             SetCreateHealth(pCLS->health * cinfo->health_multiplier * healthMod);
-            SetCreateMana(pCLS->mana * cinfo->mana_multiplier);
+            SetCreateMana(pCLS->mana * cinfo->mana_multiplier * manaMod);
             SetCreateResistance(SPELL_SCHOOL_NORMAL, int32(pCLS->armor * cinfo->armor_multiplier * armorMod));
 
             float const meleeDamageAverage = pCLS->melee_damage * cinfo->damage_multiplier * damageMod;
