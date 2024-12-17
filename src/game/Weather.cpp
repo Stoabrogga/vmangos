@@ -59,8 +59,18 @@ Weather::Weather(uint32 zone, WeatherZoneChances const* weatherChances) :
     m_weatherChances(weatherChances),
     m_isPermanentWeather(false)
 {
-    m_timer.SetInterval(sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER));
-    DETAIL_FILTER_LOG(LOG_FILTER_WEATHER, "WORLD: Starting weather system for zone %u (change every %u minutes).", m_zone, (m_timer.GetInterval() / (MINUTE * IN_MILLISECONDS)));
+    if (sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN) == sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MAX))
+    {
+        m_timer.SetInterval(sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN));
+        DETAIL_FILTER_LOG(LOG_FILTER_WEATHER, "WORLD: Starting weather system for zone %u (change every %u minutes).",
+            m_zone, sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN) / (MINUTE * IN_MILLISECONDS));
+    }
+    else
+    {
+        m_timer.SetInterval(urand(sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN), sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MAX)));
+        DETAIL_FILTER_LOG(LOG_FILTER_WEATHER, "WORLD: Starting weather system for zone %u (change every %u-%u minutes).",
+            m_zone, sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN) / (MINUTE * IN_MILLISECONDS), sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MAX) / (MINUTE * IN_MILLISECONDS));
+    }
 }
 
 // Launch a weather update
@@ -72,6 +82,10 @@ bool Weather::Update(uint32 diff, Map const* _map)
     if (m_timer.Passed())
     {
         m_timer.Reset();
+
+        if (sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN) != sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MAX))
+            m_timer.SetInterval(urand(sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN), sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MAX)));
+
         // update only if Regenerate has changed the weather
         if (ReGenerate())
         {

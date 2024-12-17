@@ -591,7 +591,8 @@ void World::LoadConfigSettings(bool reload)
     if (reload)
         sMapMgr.SetMapUpdateInterval(getConfig(CONFIG_UINT32_INTERVAL_MAPUPDATE));
 
-    setConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER, "ChangeWeatherInterval", 10 * MINUTE * IN_MILLISECONDS);
+    setConfigMin(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN, "ChangeWeatherIntervalMin", 10 * MINUTE * IN_MILLISECONDS, MINUTE * IN_MILLISECONDS);
+    setConfigMin(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MAX, "ChangeWeatherIntervalMax", 10 * MINUTE * IN_MILLISECONDS, sWorld.getConfig(CONFIG_UINT32_INTERVAL_CHANGEWEATHER_MIN));
 
     if (configNoReload(reload, CONFIG_UINT32_PORT_WORLD, "WorldServerPort", DEFAULT_WORLDSERVER_PORT))
         setConfig(CONFIG_UINT32_PORT_WORLD, "WorldServerPort", DEFAULT_WORLDSERVER_PORT);

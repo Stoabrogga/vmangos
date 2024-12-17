@@ -163,8 +163,12 @@ BindIP = "0.0.0.0"
 #        Map update interval (in milliseconds)
 #        Default: 100
 #
-#    ChangeWeatherInterval
-#        Weather update interval (in milliseconds)
+#    ChangeWeatherIntervalMin
+#        Weather update min interval (in milliseconds)
+#        Default: 600000 (10 min)
+#
+#    ChangeWeatherIntervalMax
+#        Weather update max interval (in milliseconds)
 #        Default: 600000 (10 min)
 #
 #    PlayerSave.Interval
@@ -265,7 +269,8 @@ GridUnload = 0
 GridCleanUpDelay = 300000
 CleanupTerrain = 1
 MapUpdateInterval = 100
-ChangeWeatherInterval = 600000
+ChangeWeatherIntervalMin = 600000
+ChangeWeatherIntervalMax = 600000
 PlayerSave.Interval = 900000
 PlayerSave.Stats.MinLevel = 0
 PlayerSave.Stats.SaveOnlyOnLogout = 1
