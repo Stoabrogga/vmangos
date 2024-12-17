@@ -6,6 +6,7 @@ Customizations:
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
+| 2024-12-17 | 6498396c4321d76b773e8b04737397945d6bac85 | Add mangosd parameters "ChangeWeatherIntervalMin" & "ChangeWeatherIntervalMax"; remove parameter "ChangeWeatherInterval" | |
 | 2024-12-15 | 6c1d64392371c0b29ddd6925a5cdd2f6d729f69a | Add mangosd parameter "PetManaFactor" | |
 | 2024-12-14 | bb8dbbd3099dd4189f2a214980f844ec451ceb9f | Add mangosd parameters "PetHealthFactor", "PetDamageFactor", "PetArmorFactor" & "PetResistance" | |
 | 2024-12-08 | d3bb727d228b897709fd1025b8ac379fd4a94b60 | Add new command "lowlevelquests" | d9494dbfcbdd751b9c6d25656a247158c6368ada |
