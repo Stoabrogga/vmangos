@@ -447,7 +447,7 @@ bool Map::Add(Player* player)
     sAuraRemovalMgr.PlayerEnterMap(m_id, player);
 
     // Apply player immunities defined in instance_player_immunity for the new map
-    sPlayerImmunityMgr.PlayerEnterMap(i_id, player);
+    sPlayerImmunityMgr.PlayerEnterMap(m_id, player);
 
     player->SetSplineDonePending(false);
     player->GetSession()->ClearIncomingPacketsByType(PACKET_PROCESS_MOVEMENT);
@@ -519,7 +519,7 @@ Map::Add(T* obj)
         pCreature->CastSpawnSpell();
 
         if (Pet* pet = pCreature->ToPet(); pet && pet->GetOwnerGuid().IsPlayer())
-            sPlayerImmunityMgr.PetEnterMap(i_id, pet);
+            sPlayerImmunityMgr.PetEnterMap(m_id, pet);
     }
 }
 
