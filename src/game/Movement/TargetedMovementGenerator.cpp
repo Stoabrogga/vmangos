@@ -30,6 +30,12 @@
 #include "GameObjectAI.h"
 #include "Geometry.h"
 
+template<class T, typename D>
+bool TargetedMovementGeneratorMedium<T, D>::IsFarEnoughToMoveStationaryFollower(T &owner) const
+{
+    return !i_target->IsWithinDist(&owner, 1.4f * m_fOffset);
+}
+
 //-----------------------------------------------//
 template<class T, typename D>
 void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T &owner)
@@ -93,7 +99,7 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T &owner)
         }
     }
     // prevent redundant micro-movement for pets, other followers.
-    else if (!i_target->IsMoving() && owner.movespline->Finalized() && i_target->IsWithinDistInMap(&owner, 1.4f * m_fOffset))
+    else if (!i_target->IsMoving() && owner.movespline->Finalized() && !IsFarEnoughToMoveStationaryFollower(owner))
     {
         return;
     }
@@ -660,7 +666,7 @@ bool FollowMovementGenerator<T>::Update(T &owner, uint32 const&  time_diff)
 
             // Follow movement may be interrupted
             if (!targetMoved && owner.movespline->Finalized())
-                targetMoved = !owner.IsWithinDist3d(dest.x, dest.y, dest.z, m_fOffset + i_target->GetObjectBoundingRadius() + 0.5f); 
+                targetMoved = IsFarEnoughToMoveStationaryFollower(owner);
 
             if (targetMoved)
             {
