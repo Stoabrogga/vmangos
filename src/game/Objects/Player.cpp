@@ -22780,7 +22780,7 @@ template <class T> T Player::ApplySpellMod(uint32 spellId, SpellModOp op, T &bas
         }
     }
 
-    float diff = float(basevalue) * totalpct/100.0f + totalflat;
+    float diff = (float(basevalue) + totalflat) * totalpct/100.0f + totalflat;
     basevalue = T(float(basevalue) + diff);
     return T(diff);
 }
