@@ -805,6 +805,10 @@ template void TargetedMovementGeneratorMedium<Player, ChaseMovementGenerator<Pla
 template void TargetedMovementGeneratorMedium<Player, FollowMovementGenerator<Player> >::UpdateAsync(Player &, uint32);
 template void TargetedMovementGeneratorMedium<Creature, ChaseMovementGenerator<Creature> >::UpdateAsync(Creature &, uint32);
 template void TargetedMovementGeneratorMedium<Creature, FollowMovementGenerator<Creature> >::UpdateAsync(Creature &, uint32);
+template bool TargetedMovementGeneratorMedium<Player, ChaseMovementGenerator<Player> >::IsFarEnoughToMoveStationaryFollower(Player &) const;
+template bool TargetedMovementGeneratorMedium<Player, FollowMovementGenerator<Player> >::IsFarEnoughToMoveStationaryFollower(Player &) const;
+template bool TargetedMovementGeneratorMedium<Creature, ChaseMovementGenerator<Creature> >::IsFarEnoughToMoveStationaryFollower(Creature &) const;
+template bool TargetedMovementGeneratorMedium<Creature, FollowMovementGenerator<Creature> >::IsFarEnoughToMoveStationaryFollower(Creature &) const;
 
 template bool ChaseMovementGenerator<Player>::Update(Player &, uint32 const&);
 template bool ChaseMovementGenerator<Creature>::Update(Creature &, uint32 const&);
