@@ -30,13 +30,13 @@
 #include "GameObjectAI.h"
 #include "Geometry.h"
 
+//-----------------------------------------------//
 template<class T, typename D>
 bool TargetedMovementGeneratorMedium<T, D>::IsFarEnoughToMoveStationaryFollower(T &owner) const
 {
     return !i_target->IsWithinDist(&owner, 1.4f * m_fOffset);
 }
 
-//-----------------------------------------------//
 template<class T, typename D>
 void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T &owner)
 {
@@ -666,7 +666,7 @@ bool FollowMovementGenerator<T>::Update(T &owner, uint32 const&  time_diff)
 
             // Follow movement may be interrupted
             if (!targetMoved && owner.movespline->Finalized())
-                targetMoved = IsFarEnoughToMoveStationaryFollower(owner);
+                targetMoved = this->IsFarEnoughToMoveStationaryFollower(owner);
 
             if (targetMoved)
             {
