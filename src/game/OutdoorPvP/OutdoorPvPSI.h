@@ -46,7 +46,7 @@ uint32 const SI_TURNIN_QUEST_CM_A   = 17090;
 uint32 const SI_TURNIN_QUEST_CM_H   = 18199;
 uint32 const SI_SILITHYST_MOUND     = 181597;
 uint32 const SI_SILITHYST_GEYSER    = 181598;
-uint32 const SI_DUST_BAG = 181962;
+uint32 const SI_DUST_BAG            = 181962;
 
 class OutdoorPvPSI : public OutdoorPvP
 {
