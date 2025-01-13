@@ -136,6 +136,9 @@ void IdGenerator<T>::SetMaxUsedGuid(T val, char const* guidType)
 template uint32 IdGenerator<uint32>::Generate();
 template uint64 IdGenerator<uint64>::Generate();
 
+template void IdGenerator<uint32>::SetMaxUsedGuid(uint32, char const*);
+template void IdGenerator<uint64>::SetMaxUsedGuid(uint64, char const*);
+
 ObjectMgr::ObjectMgr() :
     m_GuildIds("Guild ids"),
     m_MailIds("Mail ids"),
