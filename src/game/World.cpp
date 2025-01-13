@@ -481,8 +481,10 @@ void World::LoadConfigSettings(bool reload)
     // Read all rates from the config file
     setConfigPos(CONFIG_FLOAT_RATE_HEALTH,               "Rate.Health", 1.0f);
     setConfigPos(CONFIG_FLOAT_RATE_HEALTH_CREATURE,      "Rate.Health.Creature", 1.0f);
+    setConfigPos(CONFIG_FLOAT_RATE_HEALTH_PET,           "Rate.Health.Pet", 1.0f);
     setConfigPos(CONFIG_FLOAT_RATE_POWER_MANA,           "Rate.Mana", 1.0f);
     setConfigPos(CONFIG_FLOAT_RATE_POWER_MANA_CREATURE,  "Rate.Mana.Creature", 1.0f);
+    setConfigPos(CONFIG_FLOAT_RATE_POWER_MANA_PET,       "Rate.Mana.Pet", 1.0f);
     setConfig(CONFIG_FLOAT_RATE_POWER_RAGE_INCOME,       "Rate.Rage.Income", 1.0f);
     setConfigPos(CONFIG_FLOAT_RATE_POWER_RAGE_LOSS,      "Rate.Rage.Loss", 1.0f);
     setConfig(CONFIG_FLOAT_RATE_POWER_FOCUS,             "Rate.Focus", 1.0f);

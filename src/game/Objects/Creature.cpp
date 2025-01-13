@@ -1064,7 +1064,7 @@ void Creature::RegenerateHealth()
         }
         else
         {
-            float HealthIncreaseRate = sWorld.getConfig(CONFIG_FLOAT_RATE_HEALTH_CREATURE);
+            float HealthIncreaseRate = IsPet() ? sWorld.getConfig(CONFIG_FLOAT_RATE_HEALTH_PET) : sWorld.getConfig(CONFIG_FLOAT_RATE_HEALTH_CREATURE);
 
             addvalue = uint32(GetRegenHPPerSpirit() * HealthIncreaseRate);
             addvalue *= 4; // The timer ticks every 4 seconds.

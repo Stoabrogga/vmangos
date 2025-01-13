@@ -798,7 +798,7 @@ void Creature::UpdateMaxPower(Powers power)
 
 void Creature::UpdateManaRegen()
 {
-    float ManaIncreaseRate = sWorld.getConfig(CONFIG_FLOAT_RATE_POWER_MANA_CREATURE);
+    float ManaIncreaseRate = (IsPet() && GetOwnerGuid().IsPlayer()) ? sWorld.getConfig(CONFIG_FLOAT_RATE_POWER_MANA_PET) : sWorld.getConfig(CONFIG_FLOAT_RATE_POWER_MANA_CREATURE);
     float intellect = std::max(1.0f, GetStat(STAT_INTELLECT));
     // Apply PCT bonus from SPELL_AURA_MOD_POWER_REGEN_PERCENT aura on spirit base regen
     float power_regen = GetTotalAuraMultiplierByMiscValue(SPELL_AURA_MOD_POWER_REGEN_PERCENT, POWER_MANA);
