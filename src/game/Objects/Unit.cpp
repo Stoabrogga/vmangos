@@ -2853,7 +2853,7 @@ void Unit::UpdateSpellCritChance(uint32 school)
     // For normal school set zero crit chance
     if (school == SPELL_SCHOOL_NORMAL)
     {
-        m_modSpellCritChance[1] = 0.0f;
+        m_modSpellCritChance[school] = 0.0f;
         return;
     }
     // For others recalculate it from:
