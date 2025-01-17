@@ -1477,7 +1477,7 @@ void GameObject::Use(Unit* user)
                 Cell::VisitAllObjects(this, searcher, 10.0f);
                 for (Unit* attacker : targets)
                 {
-                    if (!attacker->IsInCombat() && !attacker->HasUnitState(UNIT_STAT_CAN_NOT_REACT_OR_LOST_CONTROL) &&
+                    if (!attacker->IsInCombat() && !attacker->HasUnitState(UNIT_STATE_CAN_NOT_REACT_OR_LOST_CONTROL) &&
                         attacker->IsValidAttackTarget(user) && attacker->IsWithinLOSInMap(user) && attacker->AI())
                         attacker->AI()->AttackStart(user);
                 }
