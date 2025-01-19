@@ -4,7 +4,7 @@ name: vmangos Development DB Dump
 on:
   push:
     branches:
-      - development
+      - root
     paths:
       - '**.sql'
       - '.github/workflows/db_dump.yml'
