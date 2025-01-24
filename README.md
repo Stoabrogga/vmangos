@@ -4,7 +4,7 @@ Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations, se
 - Custom SQL:
   - [custom world updates](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/custom_world_db.sql)
   - [new race/class combinations](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_new_race_class_combinations/server/vmangos_new_race_class_combinations.sql)
-  - [new creature family "worm"](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm/server/vmangos_creature_family_worm.sql) (needs [patch](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm/server/vmangos_creature_family_worm.patch))
+  - [new creature family "worm"](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm/server/vmangos_creature_family_worm.sql)
 
 Customizations:
 
