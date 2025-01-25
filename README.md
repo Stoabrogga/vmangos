@@ -5,6 +5,7 @@ Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations, se
   - [custom world updates](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/custom_world_db.sql)
   - [new race/class combinations](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_new_race_class_combinations/server/vmangos_new_race_class_combinations.sql)
   - [new creature family "worm"](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm/server/vmangos_creature_family_worm.sql)
+- [Discord Server "Sol" (deutsch)](https://discord.gg/RYTRU8J2tE) (German language only as there are more than enough English servers concerning WoW emulation)
 
 Customizations:
 
