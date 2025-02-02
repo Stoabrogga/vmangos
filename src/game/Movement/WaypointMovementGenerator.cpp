@@ -63,6 +63,9 @@ void WaypointMovementGenerator<Creature>::LoadPath(uint32 guid, uint32 entry, Wa
 void WaypointMovementGenerator<Creature>::Initialize(Creature &creature)
 {
     creature.AddUnitState(UNIT_STATE_ROAMING | UNIT_STATE_ROAMING_MOVE);
+
+    if (sWorld.getConfig(CONFIG_BOOL_ACTIVE_WAYPOINT_MOVEMENT))
+        creature.SetActiveObjectState(true);
 }
 
 void WaypointMovementGenerator<Creature>::InitializeWaypointPath(Creature& creature, uint32 startPoint, WaypointPathOrigin wpSource, uint32 initialDelay, uint32 overwriteGuid, uint32 overwriteEntry, bool repeat)

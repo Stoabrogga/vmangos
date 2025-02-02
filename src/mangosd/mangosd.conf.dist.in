@@ -251,6 +251,11 @@ BindIP = "0.0.0.0"
 #        Default: 1 (Enable)
 #                 0 (Disabled)
 #
+#    ActiveWaypointMovement
+#        Set all creatures with waypoint movement active
+#        Default: 0 (Disabled)
+#                 1 (Enabled)
+#
 ###################################################################################################################
 
 UseProcessors = 0
@@ -288,6 +293,7 @@ MaxCoreStuckTime = 0
 BanListReloadTimer = 120
 AddonChannel = 1
 CleanCharacterDB = 1
+ActiveWaypointMovement = 0
 
 # Optimization / load mitigation settings
 Continents.Instanciate                      = 0
