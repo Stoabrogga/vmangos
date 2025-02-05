@@ -1621,7 +1621,7 @@ void Unit::DealMeleeDamage(CalcDamageInfo const* damageInfo, bool durabilityLoss
     // If this is a creature and it attacks from behind it has a probability to daze it's victim
     if (damageInfo->totalDamage && !IsPlayer() &&
         !((Creature*)this)->GetCharmerOrOwnerGuid() && !pVictim->HasInArc(this) &&
-        !(pVictim->IsPlayer() && pVictim->GetInvincibilityHpThreshold())) // dont daze player in god mode
+        !(pVictim->IsPlayer() && (pVictim->GetInvincibilityHpThreshold() || !sWorld.getConfig(CONFIG_BOOL_CREATURE_DAZE)))) // don't daze players in god mode or disabled creature daze
     {
         // -probability is between 0% and 40%
         // 20% base chance

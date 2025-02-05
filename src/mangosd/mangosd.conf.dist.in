@@ -1314,6 +1314,11 @@ AllowTwoSide.AddFriend = 0
 #        Time during which creature can flee when no assistant found
 #        Default: 7000 (7s)
 #
+#    CreatureDaze
+#        Enable creature daze if attacking players from behind
+#        Default: 1 (Enabled)
+#                 0 (Disabled)
+#
 #    WorldBossLevelDiff
 #        Difference for boss dynamic level with target
 #        Default: 3
@@ -1402,6 +1407,7 @@ CreatureFamilyFleeAssistanceRadius = 30
 CreatureFamilyAssistanceRadius = 10
 CreatureFamilyAssistanceDelay = 1500
 CreatureFamilyFleeDelay = 7000
+CreatureDaze = 1
 WorldBossLevelDiff = 3
 Corpse.Decay.NORMAL = 300
 Corpse.Decay.RARE = 900
