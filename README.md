@@ -1,4 +1,4 @@
-Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations, see [two-dot Git diff comparison](https://github.com/vmangos/core/compare/development..Stoabrogga:vmangos:root)
+Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations, see [two-dot Git diff comparison](https://github.com/Stoabrogga/vmangos/compare/vmangos_development..root)
 
 - [Build and installation tips](https://codeberg.org/Stoabrogga/docs/src/branch/root/vmangos#readme)
 - Custom SQL:
