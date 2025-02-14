@@ -7,10 +7,10 @@ Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations.
   - [new creature family "worm"](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm/server/vmangos_creature_family_worm.sql)
 
 Customizations:
+[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root/vmangos/vmangos.diff)
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
-| 2025-02-12 | 451730f5b6f9f2c68b6b0d75b0fb80e80eb41467 | Remove GitHub workflows & templates | |
 | 2025-02-05 | 00bf1b5af0c887eb7012493b46a7b0aae5b7f117 | Add mangosd parameter "CreatureDaze" | |
 | 2025-02-02 | b4b16284fae22a648ab1de3ada46a6f1a3d8ec5a | Add mangosd parameter "ActiveWaypointMovement" | |
 | 2025-01-13 | 6b274c698203c03e26deba7803de36df3744accc | Add mangosd parameters "Rate.Health.Pet" & "Rate.Mana.Pet" | |
