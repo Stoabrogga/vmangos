@@ -6,9 +6,7 @@ Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations.
   - [new race/class combinations](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_new_race_class_combinations/server/vmangos_new_race_class_combinations.sql)
   - [new creature family "worm"](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm/server/vmangos_creature_family_worm.sql)
 
-Customizations:
-
-[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root/vmangos/vmangos.diff)
+Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root/vmangos/vmangos.diff)
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
