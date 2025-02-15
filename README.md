@@ -10,6 +10,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
+| 2025-02-15 | 4971381aa7bea44900710294a16a87d13f4a257e | Add new command "modify immunities" | |
 | 2025-02-05 | 00bf1b5af0c887eb7012493b46a7b0aae5b7f117 | Add mangosd parameter "CreatureDaze" | |
 | 2025-02-02 | b4b16284fae22a648ab1de3ada46a6f1a3d8ec5a | Add mangosd parameter "ActiveWaypointMovement" | |
 | 2025-01-13 | 6b274c698203c03e26deba7803de36df3744accc | Add mangosd parameters "Rate.Health.Pet" & "Rate.Mana.Pet" | |
@@ -27,5 +28,5 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 | 2024-09-29 | 9b4c8241ba7d267a7f6be2b22f208996acf92a4d | Add `CREATURE_FAMILY_WORM`, see [`vmangos_creature_family_worm`](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_creature_family_worm) | |
 | 2024-09-29 | bb8d96d5f17996e80dafa7d4f10f6010e637eb12 | Add mangosd parameter "PetXPFactor" | |
 | 2024-09-15 | e0c7c5ad2d543ec1f85c8226babfc29293a3b4fc | Add mangosd parameters "PetTrainingCostFactor", "PetHappinessLossFactor" & "PetUntrainCostFactor" | |
-| 2024-09-10 | bbe19d1f9b4e5c4937028444d8929b8fe6cf4b61 | Add new table [`instance_player_immunity`](docs/instance_player_immunity.md) | 17864785b6f058be399b3faef3a46559818f45d8 1e6ff2732524273534cf5a43dd68db8329d74dcc 83e7e522303b2bf5dec70b6c2cd782e223b76b17 9c20b518846185faa8b13b2c876382b37d43bc12 |
+| 2024-09-10 | bbe19d1f9b4e5c4937028444d8929b8fe6cf4b61 | Add new table [`instance_player_immunity`](docs/instance_player_immunity.md) | 17864785b6f058be399b3faef3a46559818f45d8 1e6ff2732524273534cf5a43dd68db8329d74dcc 83e7e522303b2bf5dec70b6c2cd782e223b76b17 9c20b518846185faa8b13b2c876382b37d43bc12 4971381aa7bea44900710294a16a87d13f4a257e |
 | 2024-09-10 | ff36bce0b36eb8acda00a09bde7aa5d8e2c71b2b | Add mangosd parameter "Rate.Reputation.Gain.Threshold" | |

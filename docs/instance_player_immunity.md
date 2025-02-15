@@ -9,25 +9,27 @@ This table can be used to apply immunities to the players for each map. Structur
 | `enabled`        | tinyint(1)       | NO   |     |
 | `comment`        | varchar(256)     | NO   |     |
 
+It is possible to override the immunities temporarily until the next map change using this command:<br>`modify immunities <immunity_flags>`
+
 The immunities are specified as bitmask in column `immunity_flags`:
 
-```
-PLAYER_IMMUNITY_PET               = 0x00000001, // if set, also apply immunities to player pets
-PLAYER_IMMUNITY_CHARM             = 0x00000002,
-PLAYER_IMMUNITY_FEAR              = 0x00000004,
-PLAYER_IMMUNITY_SILENCE           = 0x00000008,
-PLAYER_IMMUNITY_SLEEP             = 0x00000010,
-PLAYER_IMMUNITY_STUN              = 0x00000020,
-PLAYER_IMMUNITY_FREEZE            = 0x00000040,
-PLAYER_IMMUNITY_KNOCKOUT          = 0x00000080,
-PLAYER_IMMUNITY_POLYMORPH         = 0x00000100,
-PLAYER_IMMUNITY_HORROR            = 0x00000200,
-PLAYER_IMMUNITY_DAZE              = 0x00000400,
-PLAYER_IMMUNITY_SAPPED            = 0x00000800,
-PLAYER_IMMUNITY_KNOCK_BACK        = 0x00001000,
-PLAYER_IMMUNITY_POWER_DRAIN       = 0x00002000,
-PLAYER_IMMUNITY_AURA_MOD_CHARM    = 0x00004000,
-```
+| Name                             | Flag  | Hex        | Comment |
+|----------------------------------|-------|------------|---------|
+| `PLAYER_IMMUNITY_PET`            |     1 | 0x00000001 | if set, also apply immunities to player pets |
+| `PLAYER_IMMUNITY_CHARM`          |     2 | 0x00000002 | |
+| `PLAYER_IMMUNITY_FEAR`           |     4 | 0x00000004 | |
+| `PLAYER_IMMUNITY_SILENCE`        |     8 | 0x00000008 | |
+| `PLAYER_IMMUNITY_SLEEP`          |    16 | 0x00000010 | |
+| `PLAYER_IMMUNITY_STUN`           |    32 | 0x00000020 | |
+| `PLAYER_IMMUNITY_FREEZE`         |    64 | 0x00000040 | |
+| `PLAYER_IMMUNITY_KNOCKOUT`       |   128 | 0x00000080 | |
+| `PLAYER_IMMUNITY_POLYMORPH`      |   256 | 0x00000100 | |
+| `PLAYER_IMMUNITY_HORROR`         |   512 | 0x00000200 | |
+| `PLAYER_IMMUNITY_DAZE`           |  1024 | 0x00000400 | |
+| `PLAYER_IMMUNITY_SAPPED`         |  2048 | 0x00000800 | |
+| `PLAYER_IMMUNITY_KNOCK_BACK`     |  4096 | 0x00001000 | |
+| `PLAYER_IMMUNITY_POWER_DRAIN`    |  8192 | 0x00002000 | |
+| `PLAYER_IMMUNITY_AURA_MOD_CHARM` | 16384 | 0x00004000 | |
 
 In order to not interfere with scripts (source spell ID 0) or custom spells very high spell IDs where chosen to identify the source of the immunities for removal:
 
