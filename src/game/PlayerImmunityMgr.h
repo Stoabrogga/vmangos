@@ -69,10 +69,8 @@ public:
     void LoadFromDB();
     void PlayerEnterMap(uint32 mapId, Player* pPlayer);
     void PetEnterMap(uint32 mapId, Pet* pPet);
-
-private:
-    void HandleImmunities(Unit* unit, uint32 immunityFlags, bool apply);
-    void ApplyImmunity(Unit* unit, uint32 immunityFlags, uint32 playerImmunity, uint32 spellId, uint32 op, uint32 type);
+    static void HandleImmunities(Unit* unit, uint32 immunityFlags, bool apply);
+    static void ApplyImmunity(Unit* unit, uint32 immunityFlags, uint32 playerImmunity, uint32 spellId, uint32 op, uint32 type);
 
     // <map ID, immunity flags>
     std::unordered_map<uint32, uint32> m_data;

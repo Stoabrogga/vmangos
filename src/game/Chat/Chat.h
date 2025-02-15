@@ -691,6 +691,7 @@ class ChatHandler
         bool HandleModifyHairColorCommand(char *args);
         bool HandleModifySkinColorCommand(char *args);
         bool HandleModifyAccessoriesCommand(char *args);
+        bool HandleModifyImmunitiesCommand(char *args);
 
         //-----------------------Npc Commands-----------------------
         bool HandleNpcAddCommand(char* args);

@@ -35,6 +35,7 @@
 #include "CharacterDatabaseCache.h"
 #include "Config/Config.h"
 #include "GridSearchers.h"
+#include "PlayerImmunityMgr.h"
 
 #include <regex>
 
@@ -4929,6 +4930,25 @@ bool ChatHandler::HandleModifyAccessoriesCommand(char* args)
     target->DeMorph();
 
     PSendSysMessage("Character's facial hair / markings / hooves have been changed to: %u", accessories);
+    return true;
+}
+
+bool ChatHandler::HandleModifyImmunitiesCommand(char* args)
+{
+    if (*args)
+    {
+        uint32 immunityFlags;
+        if (!ExtractUInt32(&args, immunityFlags))
+            return false;
+
+        if (Unit* unit = GetSelectedUnit())
+        {
+            PlayerImmunityManager::HandleImmunities(unit, 0, false);
+            PlayerImmunityManager::HandleImmunities(unit, immunityFlags, true);
+            PSendSysMessage("%s immunities: %u", unit->GetName(), immunityFlags);
+        }
+    }
+
     return true;
 }
 
