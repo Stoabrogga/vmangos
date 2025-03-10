@@ -128,7 +128,6 @@ enum
     MOB_LIEUR_SORT_AILE_NOIRE   = 12457,
     MOB_GARDE_WYRM_GRIFFEMORT   = 12460,
 
-    EMOTE_DESTROY_EGG           = -1469034,
     GOSSIP_OPTION_NEFARIUS      = 6045,
 
     CONDITION_SCEPTER_FAIL      = 1,
@@ -941,7 +940,6 @@ struct go_oeuf_razAI: public GameObjectAI
             if (pUser->IsCreature() && pUser->GetEntry() == NPC_RAZORGORE)
             {
                 //pUser->MonsterYell(sMessage, 0);
-                DoScriptText(EMOTE_DESTROY_EGG, pUser);
                 switch (urand(0, 5))
                 {
                     case 0:
