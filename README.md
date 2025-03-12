@@ -1,6 +1,6 @@
 Fork of [VMaNGOS](https://github.com/vmangos/core) with a few customizations.
 
-- [Build and installation tips](https://codeberg.org/Stoabrogga/docs/src/branch/root/vmangos#readme)
+- [Build and installation notes](https://codeberg.org/Stoabrogga/docs/src/branch/root/vmangos#readme)
 - Custom SQL:
   - [custom world updates](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/custom_world_db.sql)
   - [new race/class combinations](https://codeberg.org/Stoabrogga/bash/src/branch/root/vmangos/bin/vmangos_new_race_class_combinations/server/vmangos_new_race_class_combinations.sql)
