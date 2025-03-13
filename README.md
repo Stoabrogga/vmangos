@@ -10,6 +10,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
+| 2025-03-13 | a4a310ba60af6a726f75af8e8cfdea971db1f2b1 | Add mangosd parameter "PartyBot.RandomGearMinItemLevelAtMaxPlayerLevel" | |
 | 2025-02-15 | 4971381aa7bea44900710294a16a87d13f4a257e | Add new command "modify immunities" | |
 | 2025-02-05 | 00bf1b5af0c887eb7012493b46a7b0aae5b7f117 | Add mangosd parameter "CreatureDaze" | |
 | 2025-02-02 | b4b16284fae22a648ab1de3ada46a6f1a3d8ec5a | Add mangosd parameter "ActiveWaypointMovement" | |
