@@ -1060,7 +1060,7 @@ PerformanceLog.SlowPacketBroadcast      = 0
 #        Default: 1.0
 #
 #    PetHappinessLossFactor
-#        Factor for loosing happiness over time
+#        Factor for loosing happiness over time or using spells like "Dismiss Pet"
 #        Default: 1.0
 #
 #    PetUntrainCostFactor

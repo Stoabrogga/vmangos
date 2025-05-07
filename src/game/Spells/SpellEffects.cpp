@@ -1671,6 +1671,9 @@ void Spell::EffectPowerDrain(SpellEffectIndex effIdx)
     damage = m_caster->SpellDamageBonusDone(unitTarget, m_spellInfo, effIdx, damage, SPELL_DIRECT_DAMAGE, 1, this);
     damage = unitTarget->SpellDamageBonusTaken(m_caster, m_spellInfo, effIdx, damage, SPELL_DIRECT_DAMAGE, 1, this);
 
+    if (drainPower == POWER_HAPPINESS)
+        damage *= sWorld.getConfig(CONFIG_FLOAT_PET_HAPPINESS_LOSS_FACTOR);
+
     float new_damage;
     if (curPower < damage)
         new_damage = curPower;
