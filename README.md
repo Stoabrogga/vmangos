@@ -18,7 +18,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 | 2024-12-17 | 6498396c4321d76b773e8b04737397945d6bac85 | Add mangosd parameters "ChangeWeatherIntervalMin" & "ChangeWeatherIntervalMax"; remove parameter "ChangeWeatherInterval" | |
 | 2024-12-15 | 6c1d64392371c0b29ddd6925a5cdd2f6d729f69a | Add mangosd parameter "PetManaFactor" | |
 | 2024-12-14 | bb8dbbd3099dd4189f2a214980f844ec451ceb9f | Add mangosd parameters "PetHealthFactor", "PetDamageFactor", "PetArmorFactor" & "PetResistance" | |
-| 2024-12-08 | d3bb727d228b897709fd1025b8ac379fd4a94b60 | Add new command "lowlevelquests" | d9494dbfcbdd751b9c6d25656a247158c6368ada |
+| 2024-12-08 | d3bb727d228b897709fd1025b8ac379fd4a94b60 | Add new command "lowlevelquests" | d9494dbfcbdd751b9c6d25656a247158c6368ada 250c119dcb28fb82f0f936a589f4605b3e4671ee |
 | 2024-11-29 | f8cb5d0ad6e0caece16b858bfc4aec9832c0b24c | Add mangosd parameter "AmmoLoss.Enable" | |
 | 2024-11-26 | e1ca5591a744b7bac2d73f7f42356969951a8bab | Add mangosd parameters "Rate.Creature.Raid.Damage" & "Rate.Creature.Raid.SpellDamage" | |
 | 2024-11-26 | 7852809906226ff64f1d04e420e009c8d1a9487d | Add mangosd parameters "Naxxramas.Gothik.CheckPlayerCount" & "Naxxramas.Gothik.KeepDoorOpen" | |
