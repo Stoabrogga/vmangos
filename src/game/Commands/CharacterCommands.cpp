@@ -5892,7 +5892,7 @@ bool ChatHandler::HandleListVisibleGuidsCommand(char* args)
     }
 
     PSendSysMessage("Listing guids visible by %s", pPlayer->GetName());
-
+    
     for (auto const& guid : pPlayer->m_visibleGUIDs)
         PSendSysMessage("- %s", guid.GetString().c_str());
 
