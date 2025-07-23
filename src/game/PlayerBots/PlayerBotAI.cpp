@@ -80,11 +80,33 @@ bool PlayerBotAI::SpawnNewPlayer(WorldSession* sess, uint8 class_, uint32 race_,
     std::string name = sObjectMgr.GenerateFreePlayerName();
     normalizePlayerName(name);
     uint8 gender = pClone ? pClone->GetByteValue(UNIT_FIELD_BYTES_0, UNIT_BYTES_0_OFFSET_GENDER) : urand(0, 1);
-    uint8 skin = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_SKIN_ID) : urand(0, 5);
-    uint8 face = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_FACE_ID) : urand(0, 5);
-    uint8 hairStyle = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_HAIR_STYLE_ID) : urand(0, 5);
-    uint8 hairColor = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_HAIR_COLOR_ID) : urand(0, 5);
-    uint8 facialHair = pClone ? pClone->GetByteValue(PLAYER_BYTES_2, PLAYER_BYTES_2_OFFSET_FACIAL_STYLE) : urand(0, 5);
+    std::vector<uint8> skins{0}, faces{0}, hairStyles{0}, hairColors{0}, facialHairs{0};
+
+    for (uint8 i = 1; i < 20; i++)
+        if (Player::ValidateAppearance(race_, class_, gender, 0, 0, 0, 0, i))
+            skins.emplace_back(i);
+
+    for (uint8 i = 1; i < 20; i++)
+        if (Player::ValidateAppearance(race_, class_, gender, 0, 0, i, 0, 0))
+            faces.emplace_back(i);
+
+    for (uint8 i = 1; i < 20; i++)
+        if (Player::ValidateAppearance(race_, class_, gender, i, 0, 0, 0, 0))
+            hairStyles.emplace_back(i);
+
+    for (uint8 i = 1; i < 20; i++)
+        if (Player::ValidateAppearance(race_, class_, gender, 0, i, 0, 0, 0))
+            hairColors.emplace_back(i);
+
+    for (uint8 i = 1; i < 20; i++)
+        if (Player::ValidateAppearance(race_, class_, gender, 0, 0, 0, i, 0))
+            facialHairs.emplace_back(i);
+
+    uint8 skin = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_SKIN_ID) : skins[urand(0, skins.size() - 1)];
+    uint8 face = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_FACE_ID) : faces[urand(0, faces.size() - 1)];
+    uint8 hairStyle = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_HAIR_STYLE_ID) : hairStyles[urand(0, hairStyles.size() - 1)];
+    uint8 hairColor = pClone ? pClone->GetByteValue(PLAYER_BYTES, PLAYER_BYTES_OFFSET_HAIR_COLOR_ID) : hairColors[urand(0, hairColors.size() - 1)];
+    uint8 facialHair = pClone ? pClone->GetByteValue(PLAYER_BYTES_2, PLAYER_BYTES_2_OFFSET_FACIAL_STYLE) : facialHairs[urand(0, facialHairs.size() - 1)];
     Player* newChar = new Player(sess);
     uint32 guid = botEntry->playerGUID;
     if (!newChar->Create(guid, name, race_, class_, gender, skin, face, hairStyle, hairColor, facialHair))
