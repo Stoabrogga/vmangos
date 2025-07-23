@@ -29,6 +29,7 @@ Watch different creatures which use waypoint movement, e.g.:
 - Wooly Kodo (ID 3237, GUID 15144)
 - Warpwood Tangler (ID 11464, GUID 300943)
 - Grunt Gargal (ID 9086, GUID 6883)
+- Sorcerer Ashcrombe (ID 3850, GUID 16262)
 
 Also watch creature formations without waypoint movement, e.g. Emeraldon Boughguard (GUID 33246, ID 12474).
 
