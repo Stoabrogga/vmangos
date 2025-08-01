@@ -3102,7 +3102,7 @@ Unit* Creature::SelectAttackingTarget(AttackingTarget target, uint32 position, S
             suitableUnits.reserve(threatlist.size() - position);
             advance(itr, position);
             for (; itr != threatlist.end(); ++itr)
-                if (Unit* pTarget = GetMap()->GetUnit((*itr)->getUnitGuid()))
+                if (Unit* pTarget = (*itr)->getTarget())
                     if (MeetsSelectAttackingRequirement(pTarget, pSpellInfo, selectFlags))
                         suitableUnits.push_back(pTarget);
 
@@ -3115,7 +3115,7 @@ Unit* Creature::SelectAttackingTarget(AttackingTarget target, uint32 position, S
         {
             advance(itr, position);
             for (; itr != threatlist.end(); ++itr)
-                if (Unit* pTarget = GetMap()->GetUnit((*itr)->getUnitGuid()))
+                if (Unit* pTarget = (*itr)->getTarget())
                     if (MeetsSelectAttackingRequirement(pTarget, pSpellInfo, selectFlags))
                         return pTarget;
 
@@ -3125,7 +3125,7 @@ Unit* Creature::SelectAttackingTarget(AttackingTarget target, uint32 position, S
         {
             advance(ritr, position);
             for (; ritr != threatlist.rend(); ++ritr)
-                if (Unit* pTarget = GetMap()->GetUnit((*itr)->getUnitGuid()))
+                if (Unit* pTarget = (*ritr)->getTarget())
                     if (MeetsSelectAttackingRequirement(pTarget, pSpellInfo, selectFlags))
                         return pTarget;
 
@@ -3141,7 +3141,7 @@ Unit* Creature::SelectAttackingTarget(AttackingTarget target, uint32 position, S
             advance(itr, position);
             for (; itr != threatlist.end(); ++itr)
             {
-                pTarget = GetMap()->GetUnit((*itr)->getUnitGuid());
+                pTarget = (*itr)->getTarget();
                 if (pTarget && MeetsSelectAttackingRequirement(pTarget, pSpellInfo, selectFlags))
                 {
                     combatDistance = GetDistance3dToCenter(pTarget);
@@ -3165,7 +3165,7 @@ Unit* Creature::SelectAttackingTarget(AttackingTarget target, uint32 position, S
             advance(itr, position);
             for (; itr != threatlist.end(); ++itr)
             {
-                pTarget = GetMap()->GetUnit((*itr)->getUnitGuid());
+                pTarget = (*itr)->getTarget();
                 if (pTarget && MeetsSelectAttackingRequirement(pTarget, pSpellInfo, selectFlags))
                 {
                     combatDistance = GetCombatDistance(pTarget);
@@ -3704,7 +3704,7 @@ Unit* Creature::GetNearestVictimInRange(float min, float max)
     ThreatList const& tList = GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* pTarget = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* pTarget = i->getTarget();
         if (!pTarget)
             continue;
 
@@ -3729,7 +3729,7 @@ Unit* Creature::GetFarthestVictimInRange(float min, float max)
     ThreatList const& tList = GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* pTarget = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* pTarget = i->getTarget();
         if (!pTarget)
             continue;
 
@@ -3751,7 +3751,7 @@ Unit* Creature::GetVictimInRange(float min, float max)
     ThreatList const& tList = GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* pTarget = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* pTarget = i->getTarget();
 
         if (pTarget && IsInRange(pTarget, min, max))
             return pTarget;
@@ -3767,7 +3767,7 @@ Unit* Creature::GetHostileCasterInRange(float min, float max)
     ThreatList const& tList = GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* pTarget = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* pTarget = i->getTarget();
 
         if (pTarget && pTarget->IsCaster() && IsInRange(pTarget, min, max))
             return pTarget;
@@ -3783,7 +3783,7 @@ Unit* Creature::GetHostileCaster()
     ThreatList const& tList = GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* pTarget = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* pTarget = i->getTarget();
 
         if (pTarget && pTarget->IsCaster())
             return pTarget;
@@ -3799,7 +3799,7 @@ void Creature::ProcessThreatList(ThreatListProcesser* f)
     ThreatList const& tList = GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* target = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* target = i->getTarget();
 
         if (target)
             if (f->Process(target))
@@ -3842,7 +3842,7 @@ void Creature::AddThreatsOf(Creature const* pOther)
     ThreatList const& tList = pOther->GetThreatManager().getThreatList();
     for (const auto i : tList)
     {
-        Unit* pTarget = GetMap()->GetUnit(i->getUnitGuid());
+        Unit* pTarget = i->getTarget();
 
         if (pTarget && pTarget->IsAlive() && !IsFriendlyTo(pTarget))
         {
