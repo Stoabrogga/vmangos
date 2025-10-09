@@ -256,10 +256,9 @@ BindIP = "0.0.0.0"
 #        Default: 0 (Disabled)
 #                 1 (Enabled)
 #
-#    ReuseFreeGuids
-#        Load unused guids at startup and reuse them
-#        Default: 1 (Enable)
-#                 0 (Disabled)
+#    ReusableGuidPoolSize
+#        Preload unused guids in db to reuse for new characters, items, texts and corpses.
+#        Default: 100000
 #
 ###################################################################################################################
 
@@ -299,7 +298,7 @@ BanListReloadTimer = 120
 AddonChannel = 1
 CleanCharacterDB = 1
 ActiveWaypointMovement = 0
-ReuseFreeGuids = 1
+ReusableGuidPoolSize = 100000
 
 # Optimization / load mitigation settings
 Continents.Instanciate                      = 0
