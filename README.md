@@ -12,6 +12,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
+| 2025-11-08 | 7ea00db3389df7c2451da7841cc5e08fc4a77f9e | Fix unit underwater pathing | |
 | 2025-07-23 | 58b481f3333588775657ad81394fdb2ed3d32e7b | Improve bot appearance | dcf4d08857632544a030077587042bce70ed7fa7 |
 | 2025-03-13 | a4a310ba60af6a726f75af8e8cfdea971db1f2b1 | Add mangosd parameter "PartyBot.RandomGearMinItemLevelAtMaxPlayerLevel" | |
 | 2025-02-15 | 4971381aa7bea44900710294a16a87d13f4a257e | Add new command "modify immunities" | |
