@@ -3160,7 +3160,7 @@ ObjectGuid Unit::EffectSummonPet(uint32 spellId, uint32 petEntry, uint32 petLeve
     // petEntry==0 for hunter "call pet" (current pet summoned if any)
     if (GetTypeId() == TYPEID_PLAYER && newSummon->LoadPetFromDB((Player*)this, petEntry))
     {
-        if (newSummon->getPetType() == SUMMON_PET)
+        if (newSummon->GetPetType() == SUMMON_PET)
         {
             // Remove Demonic Sacrifice auras (known pet)
             Unit::AuraList const& auraClassScripts = GetAurasByType(SPELL_AURA_OVERRIDE_CLASS_SCRIPTS);
@@ -3196,7 +3196,7 @@ ObjectGuid Unit::EffectSummonPet(uint32 spellId, uint32 petEntry, uint32 petLeve
     }
     newSummon->SetSummonPoint(pos);
 
-    newSummon->setPetType(SUMMON_PET);
+    newSummon->SetPetType(SUMMON_PET);
     newSummon->SetOwnerGuid(GetObjectGuid());
     newSummon->SetCreatorGuid(GetObjectGuid());
     newSummon->SetFactionTemplateId(GetFactionTemplateId());
@@ -3214,7 +3214,7 @@ ObjectGuid Unit::EffectSummonPet(uint32 spellId, uint32 petEntry, uint32 petLeve
     else
         newSummon->SetReactState(REACT_DEFENSIVE);
 
-    if (newSummon->getPetType() == SUMMON_PET)
+    if (newSummon->GetPetType() == SUMMON_PET)
     {
         // Remove Demonic Sacrifice auras (new pet)
         Unit::AuraList const& auraClassScripts = GetAurasByType(SPELL_AURA_OVERRIDE_CLASS_SCRIPTS);
@@ -3236,7 +3236,7 @@ ObjectGuid Unit::EffectSummonPet(uint32 spellId, uint32 petEntry, uint32 petLeve
         else
             newSummon->InitializeDefaultName();
     }
-    else if (newSummon->getPetType() == HUNTER_PET)
+    else if (newSummon->GetPetType() == HUNTER_PET)
     {
         newSummon->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PET_RENAME);
         newSummon->InitializeDefaultName();
@@ -3285,7 +3285,7 @@ void Spell::EffectLearnPetSpell(SpellEffectIndex effIdx)
     if (!pet->CanLearnPetSpell(pLearnSpell->Id))
         return;
 
-    pet->SetTP(pet->m_TrainingPoints - static_cast<int32>(sWorld.getConfig(CONFIG_FLOAT_PET_TRAINING_COST_FACTOR) * pet->GetTPForSpell(pLearnSpell->Id)));
+    pet->SetTP(pet->m_trainingPoints - static_cast<int32>(sWorld.getConfig(CONFIG_FLOAT_PET_TRAINING_COST_FACTOR) * pet->GetTPForSpell(pLearnSpell->Id)));
     pet->LearnSpell(pLearnSpell->Id);
 
     pet->SavePetToDB(PET_SAVE_AS_CURRENT);

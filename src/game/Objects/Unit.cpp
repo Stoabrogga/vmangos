@@ -4636,9 +4636,9 @@ void Unit::SetPowerType(Powers new_powertype)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_POWER_TYPE);
         }
@@ -5013,12 +5013,9 @@ Creature* Unit::GetOwnerCreature() const
 
 Player* Unit::GetOwnerPlayer() const
 {
-    if (!IsInWorld())
-        return nullptr;
-
-    if (ObjectGuid ownerid = GetOwnerGuid())
-        if (ownerid.IsPlayer())
-            return GetMap()->GetPlayer(ownerid);
+    ObjectGuid guid = GetOwnerGuid();
+    if (guid.IsPlayer())
+        return ObjectAccessor::FindPlayer(guid);
 
     return nullptr;
 }
@@ -5376,7 +5373,7 @@ bool Unit::UnsummonOldPetBeforeNewSummon(uint32 newPetEntry, bool canUnsummon)
         else if (IsPlayer())
         {
             if (newPetEntry)
-                OldSummon->Unsummon(OldSummon->getPetType() == HUNTER_PET ? PET_SAVE_AS_DELETED : PET_SAVE_NOT_IN_SLOT, this);
+                OldSummon->Unsummon(OldSummon->GetPetType() == HUNTER_PET ? PET_SAVE_AS_DELETED : PET_SAVE_NOT_IN_SLOT, this);
             else
                 return false;
         }
@@ -8289,9 +8286,9 @@ void Unit::SetHealth(uint32 val)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_CUR_HP);
         }
@@ -8312,9 +8309,9 @@ void Unit::SetMaxHealth(uint32 val)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_MAX_HP);
         }
@@ -8357,15 +8354,15 @@ void Unit::SetPower(Powers power, uint32 val)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_CUR_POWER);
         }
 
         // Update the pet's character sheet with happiness damage bonus
-        if (pPet->getPetType() == HUNTER_PET && power == POWER_HAPPINESS)
+        if (pPet->GetPetType() == HUNTER_PET && power == POWER_HAPPINESS)
             pPet->UpdateDamagePhysical(BASE_ATTACK);
     }
 }
@@ -8383,9 +8380,9 @@ void Unit::SetMaxPower(Powers power, uint32 val)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_MAX_POWER);
         }
@@ -8407,9 +8404,9 @@ void Unit::ApplyPowerMod(Powers power, uint32 val, bool apply)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_CUR_POWER);
         }
@@ -8428,9 +8425,9 @@ void Unit::ApplyMaxPowerMod(Powers power, uint32 val, bool apply)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            Player* pOwner = ::ToPlayer(GetOwner());
+            Player* pOwner = GetOwnerPlayer();
             if (pOwner && pOwner->GetGroup())
                 pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_MAX_POWER);
         }
@@ -8448,11 +8445,11 @@ uint32 Unit::GetCreatePowers(Powers power) const
         case POWER_RAGE:
             return 1000;
         case POWER_FOCUS:
-            return (IsPlayer() || !IsPet() || ((Pet const*)this)->getPetType() != HUNTER_PET ? 0 : 100);
+            return (IsPlayer() || !IsPet() || ((Pet const*)this)->GetPetType() != HUNTER_PET ? 0 : 100);
         case POWER_ENERGY:
             return 100;
         case POWER_HAPPINESS:
-            return (IsPlayer() || !IsPet() || ((Pet const*)this)->getPetType() != HUNTER_PET ? 0 : 1050000);
+            return (IsPlayer() || !IsPet() || ((Pet const*)this)->GetPetType() != HUNTER_PET ? 0 : 1050000);
     }
 
     return 0;
@@ -8919,7 +8916,7 @@ void Unit::HandlePetCommand(CommandStates command, Unit* pTarget)
                     pCharmedCreature->AI()->AttackStart(pTarget);
 
                     //10% chance to play special pet attack talk, else growl
-                    if (pCharmedCreature->IsPet() && ((Pet*)this)->getPetType() == SUMMON_PET && this != pTarget && urand(0, 100) < 10)
+                    if (pCharmedCreature->IsPet() && ((Pet*)this)->GetPetType() == SUMMON_PET && this != pTarget && urand(0, 100) < 10)
                         SendPetTalk((uint32)PET_TALK_ATTACK);
                     else
                     {
@@ -8950,7 +8947,7 @@ void Unit::HandlePetCommand(CommandStates command, Unit* pTarget)
             if (Pet* pPet = ToPet())
             {
                 // Hunter pets are dismissed with a spell with a cast time
-                if (pPet->getPetType() != HUNTER_PET)
+                if (pPet->GetPetType() != HUNTER_PET)
                     // dismissing a summoned pet is like killing them (this prevents returning a soulshard...)
                     pPet->Unsummon(PET_SAVE_NOT_IN_SLOT);
             }
@@ -9204,7 +9201,7 @@ Player* Unit::GetSpellModOwner() const
     {
         if (pCreature->IsPet() || pCreature->IsTotem())
         {
-            if (Player* pOwner = ::ToPlayer(GetOwner()))
+            if (Player* pOwner = GetOwnerPlayer())
                 return pOwner;
         }
     }
@@ -9230,7 +9227,7 @@ void Unit::SendPetCastFail(uint32 spellid, SpellCastResult msg)
 
 void Unit::SendPetActionFeedback(uint8 msg)
 {
-    if (Player* pOwner = ::ToPlayer(GetOwner()))
+    if (Player* pOwner = GetOwnerPlayer())
     {
         WorldPacket data(SMSG_PET_ACTION_FEEDBACK, 1);
         data << uint8(msg);
@@ -9241,7 +9238,7 @@ void Unit::SendPetActionFeedback(uint8 msg)
 void Unit::SendPetTalk(uint32 pettalk)
 {
 #if SUPPORTED_CLIENT_BUILD > CLIENT_BUILD_1_10_2
-    if (Player* pOwner = ::ToPlayer(GetOwner()))
+    if (Player* pOwner = GetOwnerPlayer())
     {
         WorldPacket data(SMSG_PET_ACTION_SOUND, 8 + 4);
         data << GetObjectGuid();
@@ -9253,7 +9250,7 @@ void Unit::SendPetTalk(uint32 pettalk)
 
 void Unit::SendPetAIReaction()
 {
-    if (Player* pOwner = ::ToPlayer(GetOwner()))
+    if (Player* pOwner = GetOwnerPlayer())
     {
         WorldPacket data(SMSG_AI_REACTION, 8 + 4);
         data << GetObjectGuid();
@@ -9524,8 +9521,8 @@ void Unit::SetDisplayId(uint32 displayId)
     UpdateModelData();
 
     if (Pet* pPet = ToPet())
-        if (pPet->isControlled())
-            if (Player* pOwner = ::ToPlayer(GetOwner()))
+        if (pPet->IsControlled())
+            if (Player* pOwner = GetOwnerPlayer())
                 if (pOwner->GetGroup())
                     pOwner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_MODEL_ID);
 }
@@ -9950,9 +9947,9 @@ void Unit::UpdateAuraForGroup(uint8 slot)
     }
     else if (Pet* pPet = ToPet())
     {
-        if (pPet->isControlled())
+        if (pPet->IsControlled())
         {
-            if (Player* pOwner = ::ToPlayer(GetOwner()))
+            if (Player* pOwner = GetOwnerPlayer())
             {
                 if (pOwner->GetGroup())
                 {
