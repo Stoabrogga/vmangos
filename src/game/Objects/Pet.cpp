@@ -2363,7 +2363,7 @@ void Pet::SynchronizeLevelWithOwner()
             break;
         // can't be greater owner level
         case HUNTER_PET:
-            if (GetLevel() > owner->GetLevel())
+            if (GetLevel() > owner->GetLevel() || sWorld.getConfig(CONFIG_BOOL_PET_SYNC_LEVEL))
                 GivePetLevel(owner->GetLevel());
             break;
         default:

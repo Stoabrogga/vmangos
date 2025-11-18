@@ -3088,8 +3088,9 @@ void Spell::EffectTameCreature(SpellEffectIndex /*effIdx*/)
     pet->SetCreatorGuid(plr->GetObjectGuid());
     pet->SetFactionTemplateId(plr->GetFactionTemplateId());
     pet->SetUInt32Value(UNIT_CREATED_BY_SPELL, m_spellInfo->Id);
+    uint32 petLevel = sWorld.getConfig(CONFIG_BOOL_PET_SYNC_LEVEL) ? plr->GetLevel() : creatureTarget->GetLevel();
 
-    if (!pet->InitStatsForLevel(creatureTarget->GetLevel()))
+    if (!pet->InitStatsForLevel(petLevel))
     {
         sLog.Out(LOG_BASIC, LOG_LVL_ERROR, "Pet::InitStatsForLevel() failed for creature (Entry: %u)!", creatureTarget->GetEntry());
         delete pet;
@@ -3107,7 +3108,7 @@ void Spell::EffectTameCreature(SpellEffectIndex /*effIdx*/)
     creatureTarget->ForcedDespawn();
 
     // prepare visual effect for levelup
-    pet->SetUInt32Value(UNIT_FIELD_LEVEL, creatureTarget->GetLevel() - 1);
+    pet->SetUInt32Value(UNIT_FIELD_LEVEL, petLevel - 1);
 
     // Apply default loyalty at summon
     LoyaltyLevel defaultLoyalty = LoyaltyLevel(sWorld.getConfig(CONFIG_UINT32_PET_DEFAULT_LOYALTY));
@@ -3121,7 +3122,7 @@ void Spell::EffectTameCreature(SpellEffectIndex /*effIdx*/)
     pet->GetMap()->Add((Creature*)pet);
 
     // visual effect for levelup
-    pet->SetUInt32Value(UNIT_FIELD_LEVEL, creatureTarget->GetLevel());
+    pet->SetUInt32Value(UNIT_FIELD_LEVEL, petLevel);
 
     // caster have pet now
     plr->SetPet(pet);

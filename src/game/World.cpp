@@ -824,6 +824,7 @@ void World::LoadConfigSettings(bool reload)
     setConfig(CONFIG_UINT32_ENVIRONMENTAL_DAMAGE_MIN, "EnvironmentalDamage.Min", 605);
     setConfigMin(CONFIG_UINT32_ENVIRONMENTAL_DAMAGE_MAX, "EnvironmentalDamage.Max", 610, getConfig(CONFIG_UINT32_ENVIRONMENTAL_DAMAGE_MIN));
 
+    setConfig(CONFIG_BOOL_PET_SYNC_LEVEL, "PetSyncLevel", false);
     setConfig(CONFIG_BOOL_PET_UNSUMMON_AT_MOUNT,      "PetUnsummonAtMount", false);
     setConfigMinMax(CONFIG_UINT32_PET_DEFAULT_LOYALTY, "PetDefaultLoyalty", 1, 1, 6);
     setConfigMin(CONFIG_FLOAT_PET_TRAINING_COST_FACTOR, "PetTrainingCostFactor", 1.f, 0.f);

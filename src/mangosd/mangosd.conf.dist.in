@@ -1051,6 +1051,10 @@ PerformanceLog.SlowPacketBroadcast      = 0
 #        More mails increase server load but can prevent a bottleneck where expired mails aren't handled until server restart. Normal tick length: 30 minutes.
 #        Default: 5
 #
+#    PetSyncLevel
+#        Default: 0 - do not synchronize
+#                 1 - synchronize pet level with player level
+#
 #    PetUnsummonAtMount
 #        Permanent pet will be unsummoned at player mount
 #        Default: 0 - not unsummon
@@ -1201,6 +1205,7 @@ MailDeliveryDelay = 3600
 Mails.COD.ForceTag.MaxLevel = 0
 MassMailer.SendPerTick = 10
 Mail.ReturnedMail.PerTick = 5
+PetSyncLevel = 0
 PetUnsummonAtMount = 0
 PetDefaultLoyalty = 1
 PetTrainingCostFactor = 1.0
