@@ -14,7 +14,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 |------------|------------------------------------------|---------|-----------------|
 | 2025-11-18 | c5986e69c0d121b803926fa3d244388de68f4a94 | Add mangosd parameter "PetSyncLevel" | |
 | 2025-11-08 | 7ea00db3389df7c2451da7841cc5e08fc4a77f9e | Fix unit underwater pathing | ff225fb472a9b0c46fbf49e7ec88f6fa0360557f |
-| 2025-07-23 | 58b481f3333588775657ad81394fdb2ed3d32e7b | Improve bot appearance | dcf4d08857632544a030077587042bce70ed7fa7 |
+| 2025-07-23 | 58b481f3333588775657ad81394fdb2ed3d32e7b | Improve bot appearance | dcf4d08857632544a030077587042bce70ed7fa7<br>obsolete with e0f9c3fc774e04968c2c7856c8b291986bb02cf0 |
 | 2025-03-13 | a4a310ba60af6a726f75af8e8cfdea971db1f2b1 | Add mangosd parameter "PartyBot.RandomGearMinItemLevelAtMaxPlayerLevel" | |
 | 2025-02-15 | 4971381aa7bea44900710294a16a87d13f4a257e | Add new command "modify immunities" | |
 | 2025-02-05 | 00bf1b5af0c887eb7012493b46a7b0aae5b7f117 | Add mangosd parameter "CreatureDaze" | |
