@@ -2751,6 +2751,9 @@ void CombatBotBaseAI::AutoEquipGear(uint32 option)
 
 bool CombatBotBaseAI::CanTryToCastSpell(Unit const* pTarget, SpellEntry const* pSpellEntry) const
 {
+    if (m_preventCasting)
+        return false;
+
     if (!me->IsSpellReady(pSpellEntry->Id))
         return false;
 
@@ -2803,6 +2806,9 @@ bool CombatBotBaseAI::CanTryToCastSpell(Unit const* pTarget, SpellEntry const* p
 
 SpellCastResult CombatBotBaseAI::DoCastSpell(Unit* pTarget, SpellEntry const* pSpellEntry)
 {
+    if (m_preventCasting)
+        return SPELL_FAILED_DONT_REPORT;
+
     if (me != pTarget)
         me->SetFacingToObject(pTarget);
 
