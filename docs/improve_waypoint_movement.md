@@ -1,8 +1,8 @@
 ## Improve waypoint movement
 
-VMaNGOS GitHub pull request: <https://github.com/vmangos/core/pull/3013>
+VMaNGOS GitHub pull request: <https://github.com/vmangos/core/pull/3207>
 
-The pull request was automatically closed because I deleted my GitLab and GitHub "Stoabrogga" accounts in favor of Codeberg. I'll not merge this because it needs to be tested with many players, but can provide the diff if anyone wants to add it manually: [`improve_waypoint_movement.diff`](improve_waypoint_movement.diff)
+[`improve_waypoint_movement.diff`](improve_waypoint_movement.diff)
 
 ### Description
 
