@@ -21,6 +21,7 @@
 
 #include "Common.h"
 #include "Policies/Singleton.h"
+#include "Pet.h"
 
 enum PlayerImmunity
 {

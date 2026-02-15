@@ -36,6 +36,7 @@
 #include "Config/Config.h"
 #include "GridSearchers.h"
 #include "PlayerImmunityMgr.h"
+#include "ScriptMgr.h"
 
 #include <regex>
 #include <iterator>

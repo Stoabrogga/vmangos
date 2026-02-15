@@ -31,6 +31,7 @@
 #include "Util.h"
 #include "Pet.h"
 #include "Group.h"
+#include "World.h"
 
 void WorldSession::HandlePetAction(WorldPacket& recv_data)
 {

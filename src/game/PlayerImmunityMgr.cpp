@@ -22,6 +22,7 @@
 #include "Policies/SingletonImp.h"
 #include "Player.h"
 #include "ProgressBar.h"
+#include "Pet.h"
 
 INSTANTIATE_SINGLETON_1(PlayerImmunityManager);
 
