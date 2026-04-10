@@ -3501,6 +3501,7 @@ void Creature::ClearTemporaryFaction()
 
 void Creature::SendAreaSpiritHealerQueryOpcode(Player* pl)
 {
+#if SUPPORTED_CLIENT_BUILD > CLIENT_BUILD_1_4_2
     uint32 next_resurrect = 0;
     if (Spell* pcurSpell = GetCurrentSpell(CURRENT_CHANNELED_SPELL))
         next_resurrect = pcurSpell->GetCastedTime();
@@ -3508,6 +3509,7 @@ void Creature::SendAreaSpiritHealerQueryOpcode(Player* pl)
     data << ObjectGuid(GetObjectGuid());
     data << uint32(next_resurrect);
     pl->SendDirectMessage(&data);
+#endif
 }
 
 void Creature::DisappearAndDie()
