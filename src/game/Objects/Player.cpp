@@ -6505,7 +6505,7 @@ int32 Player::CalculateReputationGain(ReputationSource source, int32 rep, int32 
     float configRate = 1.f;
     if (GetReputationMgr().GetReputation(faction) >= sWorld.getConfig(CONFIG_INT32_RATE_REPUTATION_GAIN_THRESHOLD))
         configRate = sWorld.getConfig(CONFIG_FLOAT_RATE_REPUTATION_GAIN);
-    return int32(round_float(configRate * rep * percent / 100.0f));
+    return rand_dither(configRate * rep * percent / 100.0f);
 }
 
 //Calculates how many reputation points player gains in victim's enemy factions

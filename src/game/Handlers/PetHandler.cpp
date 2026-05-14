@@ -28,10 +28,10 @@
 #include "Opcodes.h"
 #include "Spell.h"
 #include "CreatureAI.h"
-#include "Util.h"
 #include "Pet.h"
 #include "Group.h"
 #include "World.h"
+#include "Utilities/Random.h"
 
 void WorldSession::HandlePetAction(WorldPackets::Pet::PetAction const& packet)
 {
