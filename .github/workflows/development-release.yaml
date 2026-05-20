@@ -4,7 +4,7 @@ name: Development Release
 on:
   push:
     branches:
-      - development
+      - root
     paths-ignore:
       - '.github/ISSUE_TEMPLATE.md'
       - '.github/ISSUE_TEMPLATE/**'

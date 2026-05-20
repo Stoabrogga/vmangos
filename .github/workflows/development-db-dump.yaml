@@ -4,7 +4,7 @@ name: Development Database Dump
 on:
   push:
     branches:
-      - development
+      - root
     paths:
       - '.github/scripts/export-and-verify-sql-dumps.sh'
       - '.github/scripts/prepare-sql-test-environment.sh'
