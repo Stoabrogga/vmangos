@@ -13,7 +13,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 
 | date       | commit                                   | comment | related commits |
 |------------|------------------------------------------|---------|-----------------|
-| 2025-03-04 | d3fc7ef28257c05ba0527a6db9e7652721828782 | Add mangosd parameter "vmap.enableM2LOS" | |
+| 2026-03-04 | d3fc7ef28257c05ba0527a6db9e7652721828782 | Add mangosd parameter "vmap.enableM2LOS" | |
 | 2025-11-18 | c5986e69c0d121b803926fa3d244388de68f4a94 | Add mangosd parameter "PetSyncLevel" | |
 | 2025-11-08 | 7ea00db3389df7c2451da7841cc5e08fc4a77f9e | ~~Fix unit underwater pathing~~ | ff225fb472a9b0c46fbf49e7ec88f6fa0360557f<br>obsolete with 29fb21c57c6c831bea4d3475afc16c5484c294d7 |
 | 2025-07-23 | 58b481f3333588775657ad81394fdb2ed3d32e7b | ~~Improve bot appearance~~ | dcf4d08857632544a030077587042bce70ed7fa7<br>obsolete with e0f9c3fc774e04968c2c7856c8b291986bb02cf0 |
