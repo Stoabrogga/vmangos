@@ -19,7 +19,7 @@ Customizations:<br>[`diff`](https://codeberg.org/Stoabrogga/docs/src/branch/root
 | 2025-07-23 | 58b481f3333588775657ad81394fdb2ed3d32e7b | ~~Improve bot appearance~~ | dcf4d08857632544a030077587042bce70ed7fa7<br>obsolete with e0f9c3fc774e04968c2c7856c8b291986bb02cf0 |
 | 2025-03-13 | a4a310ba60af6a726f75af8e8cfdea971db1f2b1 | Add mangosd parameter "PartyBot.RandomGearMinItemLevelAtMaxPlayerLevel" | |
 | 2025-02-15 | 4971381aa7bea44900710294a16a87d13f4a257e | Add new command "modify immunities" | |
-| 2025-02-05 | 00bf1b5af0c887eb7012493b46a7b0aae5b7f117 | Add mangosd parameter "CreatureDaze" | |
+| 2025-02-05 | 00bf1b5af0c887eb7012493b46a7b0aae5b7f117 | Add mangosd parameter "CreatureDaze" | 6ae4c92135ed12149d174d387b14ddbb8c788837 |
 | 2025-02-02 | b4b16284fae22a648ab1de3ada46a6f1a3d8ec5a | Add mangosd parameter "ActiveWaypointMovement" | b2c28fa00b26ca4c0729523c92bfa34d7c253ddb 39b881555fb5c0d59bdad886d5ef1af50c133b9c |
 | 2025-01-13 | 6b274c698203c03e26deba7803de36df3744accc | Add mangosd parameters "Rate.Health.Pet" & "Rate.Mana.Pet" | |
 | 2024-12-17 | 6498396c4321d76b773e8b04737397945d6bac85 | Add mangosd parameters "ChangeWeatherIntervalMin" & "ChangeWeatherIntervalMax"; remove parameter "ChangeWeatherInterval" | |
