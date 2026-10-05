@@ -1,11 +1,11 @@
 diff --git a/src/game/Movement/WaypointMovementGenerator.cpp b/src/game/Movement/WaypointMovementGenerator.cpp
-index 3fba85d3e..7fb029f1c 100644
+index 4b0c041f6..c7d84f235 100644
 --- a/src/game/Movement/WaypointMovementGenerator.cpp
 +++ b/src/game/Movement/WaypointMovementGenerator.cpp
-@@ -28,10 +28,31 @@
- #include "MoveSpline.h"
+@@ -29,10 +29,31 @@
  #include "CreatureGroups.h"
  #include "Map.h"
+ #include "World.h"
 -
 -#include <cassert>
 +#include "Geometry.h"
@@ -36,7 +36,7 @@ index 3fba85d3e..7fb029f1c 100644
  void WaypointMovementGenerator<Creature>::LoadPath(uint32 guid, uint32 entry, WaypointPathOrigin wpOrigin)
  {
      DETAIL_FILTER_LOG(LOG_FILTER_AI_AND_MOVEGENSS, "LoadPath: loading waypoint path for GUID %u Entry %u", guid, entry);
-@@ -137,16 +158,17 @@ bool WaypointMovementGenerator<Creature>::OnArrived(Creature& creature)
+@@ -138,16 +159,17 @@ bool WaypointMovementGenerator<Creature>::OnArrived(Creature& creature)
          return false;
      }
  
@@ -61,7 +61,7 @@ index 3fba85d3e..7fb029f1c 100644
      WaypointNode const& node = currPoint->second;
  
      if (node.script_id)
-@@ -181,64 +203,113 @@ bool WaypointMovementGenerator<Creature>::OnArrived(Creature& creature)
+@@ -182,64 +204,113 @@ bool WaypointMovementGenerator<Creature>::OnArrived(Creature& creature)
      return true;
  }
  
@@ -208,7 +208,7 @@ index 3fba85d3e..7fb029f1c 100644
  }
  
  bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 const& diff)
-@@ -264,7 +335,6 @@ bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 cons
+@@ -268,7 +339,6 @@ bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 cons
          {
              creature.StopMoving();
              i_nextMoveTime.Reset(1);
@@ -216,7 +216,7 @@ index 3fba85d3e..7fb029f1c 100644
          }
  
          creature.ClearUnitState(UNIT_STATE_ROAMING_MOVE);
-@@ -276,6 +346,12 @@ bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 cons
+@@ -280,6 +350,12 @@ bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 cons
          if (CanMove(diff))
              StartMove(creature);
      }
@@ -229,7 +229,7 @@ index 3fba85d3e..7fb029f1c 100644
      else
      {
          if (creature.IsStopped())
-@@ -285,6 +361,25 @@ bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 cons
+@@ -289,6 +365,25 @@ bool WaypointMovementGenerator<Creature>::Update(Creature &creature, uint32 cons
              if (OnArrived(creature))        // fire script events
                  StartMove(creature);        // restart movement if needed
          }
@@ -255,7 +255,7 @@ index 3fba85d3e..7fb029f1c 100644
      }
      return true;
  }
-@@ -321,7 +416,6 @@ bool WaypointMovementGenerator<Creature>::SetNextWaypoint(uint32 pointId)
+@@ -325,7 +420,6 @@ bool WaypointMovementGenerator<Creature>::SetNextWaypoint(uint32 pointId)
      // Handle allow movement this way to not interact with PAUSED state.
      // If this function is called while PAUSED, it will move properly when unpaused.
      i_nextMoveTime.Reset(1);
@@ -263,7 +263,7 @@ index 3fba85d3e..7fb029f1c 100644
  
      // Set the point
      i_currentNode = pointId;
-@@ -533,7 +627,8 @@ bool PatrolMovementGenerator::Update(Creature &creature, uint32 const& diff)
+@@ -537,7 +631,8 @@ bool PatrolMovementGenerator::Update(Creature &creature, uint32 const& diff)
          return true;
      }
  
@@ -273,7 +273,7 @@ index 3fba85d3e..7fb029f1c 100644
          StartMove(creature);
  
      return true;
-@@ -559,6 +654,8 @@ void PatrolMovementGenerator::StartMove(Creature& creature)
+@@ -563,6 +658,8 @@ void PatrolMovementGenerator::StartMove(Creature& creature)
      if (!leader || leader->movespline->Finalized())
          return;
  
@@ -282,7 +282,7 @@ index 3fba85d3e..7fb029f1c 100644
      switch (leader->GetMotionMaster()->GetCurrentMovementGeneratorType())
      {
          case RANDOM_MOTION_TYPE:
-@@ -582,6 +679,62 @@ void PatrolMovementGenerator::StartMove(Creature& creature)
+@@ -586,6 +683,62 @@ void PatrolMovementGenerator::StartMove(Creature& creature)
      if (!leaderTimeBeforeNextWP)
          return;
  
@@ -346,10 +346,18 @@ index 3fba85d3e..7fb029f1c 100644
      Vector3 last = leader->movespline->GetPoint(totalLeaderPoints);
      Vector3 direction = last - leader->movespline->GetPoint(totalLeaderPoints - 1);
 diff --git a/src/game/Movement/WaypointMovementGenerator.h b/src/game/Movement/WaypointMovementGenerator.h
-index ec4ebb707..c22401713 100644
+index 306a27ab8..4fa8f3d17 100644
 --- a/src/game/Movement/WaypointMovementGenerator.h
 +++ b/src/game/Movement/WaypointMovementGenerator.h
-@@ -36,6 +36,8 @@
+@@ -29,6 +29,7 @@
+ #include "WaypointManager.h"
+ #include "CreatureGroups.h"
+ #include "Player.h"
++#include "MoveSplineInitArgs.h"
+ 
+ #include <vector>
+ #include <set>
+@@ -36,6 +37,8 @@
  #define FLIGHT_TRAVEL_UPDATE  100
  #define STOP_TIME_FOR_PLAYER  (30 * IN_MILLISECONDS)
  
@@ -358,16 +366,16 @@ index ec4ebb707..c22401713 100644
  template<class T, class P>
  class PathMovementBase
  {
-@@ -68,7 +70,7 @@ class WaypointMovementGenerator<Creature>
+@@ -68,7 +71,7 @@ class WaypointMovementGenerator<Creature>
    public PathMovementBase<Creature, WaypointPath const*>
  {
      public:
 -        WaypointMovementGenerator(Creature &, bool repeating = true) : i_nextMoveTime(0), m_isArrivalDone(false), m_repeating(repeating), m_isWandering(false), m_lastReachedWaypoint(0) {}
 +        WaypointMovementGenerator(Creature &, bool repeating = true) : i_nextMoveTime(0), m_repeating(repeating), m_isWandering(false), m_lastReachedWaypoint(0), m_pathDuration(0), m_creatureSpeed(0.f), m_lastSplineId(0) {}
-         ~WaypointMovementGenerator() { i_path = nullptr; }
+         ~WaypointMovementGenerator() override { i_path = nullptr; }
          void Initialize(Creature &u);
          void Interrupt(Creature &);
-@@ -85,6 +87,8 @@ class WaypointMovementGenerator<Creature>
+@@ -85,6 +88,8 @@ class WaypointMovementGenerator<Creature>
          void GetPathInformation(WaypointPathOrigin& wpOrigin) const { wpOrigin = m_PathOrigin; }
          void GetPathInformation(std::ostringstream& oss) const;
          bool SetNextWaypoint(uint32 pointId);
@@ -376,7 +384,7 @@ index ec4ebb707..c22401713 100644
  
          void AddPauseTime(int32 waitTimeDiff)
          {
-@@ -114,10 +118,13 @@ class WaypointMovementGenerator<Creature>
+@@ -114,10 +119,13 @@ class WaypointMovementGenerator<Creature>
          }
  
          ShortTimeTracker i_nextMoveTime;
@@ -391,7 +399,7 @@ index ec4ebb707..c22401713 100644
  
          WaypointPathOrigin m_PathOrigin;
  };
-@@ -156,7 +163,7 @@ class PatrolMovementGenerator
+@@ -156,7 +164,7 @@ class PatrolMovementGenerator
  {
      public:
          explicit PatrolMovementGenerator(Creature& c) { ASSERT(InitPatrol(c)); }
@@ -400,7 +408,7 @@ index ec4ebb707..c22401713 100644
          bool InitPatrol(Creature& c);
  
          void LoadPath(Creature &c);
-@@ -172,6 +179,7 @@ class PatrolMovementGenerator
+@@ -172,6 +180,7 @@ class PatrolMovementGenerator
      private:
          ObjectGuid m_leaderGuid;
          CreatureGroupMember m_groupMember;
@@ -409,10 +417,16 @@ index ec4ebb707..c22401713 100644
  
  #endif
 diff --git a/src/game/Movement/spline/MoveSplineInit.h b/src/game/Movement/spline/MoveSplineInit.h
-index c163f4ece..399982fc6 100644
+index c163f4ece..f9405353a 100644
 --- a/src/game/Movement/spline/MoveSplineInit.h
 +++ b/src/game/Movement/spline/MoveSplineInit.h
-@@ -27,6 +27,8 @@ class Unit;
+@@ -22,11 +22,14 @@
+ #include "MoveSplineInitArgs.h"
+ #include "PathFinder.h"
+ #include "MotionMaster.h"
++#include "UnitDefines.h"
+ 
+ class Unit;
  
  namespace Movement
  {
